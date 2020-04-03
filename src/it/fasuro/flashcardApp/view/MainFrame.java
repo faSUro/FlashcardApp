@@ -63,6 +63,7 @@ public class MainFrame extends JFrame {
 		mainPanel.add(difficultyPanel, BorderLayout.SOUTH);
 		
 		setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
 }
