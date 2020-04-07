@@ -16,7 +16,7 @@ public class QuestionPanel extends JPanel {
 		questionLabel = new JLabel("  Let's start  ");
 		questionLabel.setFont(new Font("Dialog", Font.BOLD, 18));
 		
-		showAnswerButton = new JButton("  Show answer  ");
+		showAnswerButton = new JButton("  Go!  ");
 		showAnswerButton.setFont(new Font("Dialog", Font.BOLD, 18));
 		
 		add(questionLabel);
