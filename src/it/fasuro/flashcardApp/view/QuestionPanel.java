@@ -6,6 +6,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Contains the current question and the button 
+ * that allows to show the answer.
+ *
+ */
 @SuppressWarnings("serial")
 public class QuestionPanel extends JPanel {
 	

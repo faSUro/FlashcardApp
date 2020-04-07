@@ -6,6 +6,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * Contains the answer to the current question, only 
+ * visible after clicking the "show answer" button.
+ *
+ */
 @SuppressWarnings("serial")
 public class AnswerPanel extends JPanel {
 	

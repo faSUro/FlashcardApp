@@ -7,6 +7,11 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * Contains the three buttons that allow to choose
+ * the difficulty of the current question.
+ *
+ */
 @SuppressWarnings("serial")
 public class DifficultyPanel extends JPanel {
 	

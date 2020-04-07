@@ -7,10 +7,15 @@ import java.util.TreeMap;
 import it.fasuro.flashcardApp.model.Deck;
 import it.fasuro.flashcardApp.view.StudyDeckFrame;
 
+/**
+ * This class connects the different layers of the program: the map
+ * (that contains the flashcards) and the GUI.
+ *
+ */
 public class Controller {
 	
-	private final static StudyDeckFrame VIEW = new StudyDeckFrame();
-	private static TreeMap<String, String> MODEL;
+	private final static StudyDeckFrame GUI = new StudyDeckFrame();
+	private static TreeMap<String, String> DECK;
 	
 	private static int COUNTER = 0;
 	private static int TOTAL_QUESTIONS;
@@ -18,7 +23,7 @@ public class Controller {
 	
 	private static ActionListener SHOW_ANSWER_LISTENER = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			VIEW.getAnswerPanel().setAnswer(MODEL.get(KEY_SET[COUNTER].toString()));
+			GUI.getAnswerPanel().setAnswer(DECK.get(KEY_SET[COUNTER].toString()));
 			
 			setNextQuestionListener();	
 		}		
@@ -28,8 +33,8 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			COUNTER++;
 			if (COUNTER < TOTAL_QUESTIONS) {
-				VIEW.getQuestionPanel().setQuestion(KEY_SET[COUNTER].toString());
-				VIEW.getAnswerPanel().setAnswer("");
+				GUI.getQuestionPanel().setQuestion(KEY_SET[COUNTER].toString());
+				GUI.getAnswerPanel().setAnswer("");
 			
 				setShowAnswerListener();	
 			} else {
@@ -42,8 +47,8 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			COUNTER++;
 			if (COUNTER < TOTAL_QUESTIONS) {
-				VIEW.getQuestionPanel().setQuestion(KEY_SET[COUNTER].toString());
-				VIEW.getAnswerPanel().setAnswer("");
+				GUI.getQuestionPanel().setQuestion(KEY_SET[COUNTER].toString());
+				GUI.getAnswerPanel().setAnswer("");
 			
 				setShowAnswerListener();	
 			} else {
@@ -56,8 +61,8 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			COUNTER++;
 			if (COUNTER < TOTAL_QUESTIONS) {
-				VIEW.getQuestionPanel().setQuestion(KEY_SET[COUNTER].toString());
-				VIEW.getAnswerPanel().setAnswer("");
+				GUI.getQuestionPanel().setQuestion(KEY_SET[COUNTER].toString());
+				GUI.getAnswerPanel().setAnswer("");
 			
 				setShowAnswerListener();	
 			} else {
@@ -66,20 +71,27 @@ public class Controller {
 		}		
 	};
 	
+	/**
+	 * Initializes the DECK static variable and makes
+	 * an array that contains the key set. It also 
+	 * initializes the TOTAL_QUESTIONS variable (with 
+	 * the length of the key set).
+	 * @param deck
+	 */
 	public Controller(Deck deck) {
-		MODEL = deck.getFcToStudy();
+		DECK = deck.getFcToStudy();
 		
-		KEY_SET = MODEL.keySet().toArray();
+		KEY_SET = DECK.keySet().toArray();
 		TOTAL_QUESTIONS = KEY_SET.length;
 		
 		setFirstQuestionListener();
 	}
 
 	private void setFirstQuestionListener() {
-		VIEW.getQuestionPanel().getShowAnswerButton().addActionListener(new ActionListener() {
+		GUI.getQuestionPanel().getShowAnswerButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VIEW.getQuestionPanel().getQuestionLabel().setText(KEY_SET[COUNTER].toString());
-				VIEW.getQuestionPanel().getShowAnswerButton().setText("  Show answer  ");
+				GUI.getQuestionPanel().getQuestionLabel().setText(KEY_SET[COUNTER].toString());
+				GUI.getQuestionPanel().getShowAnswerButton().setText("  Show answer  ");
 				
 				setShowAnswerListener();
 			}
@@ -87,19 +99,19 @@ public class Controller {
 	}
 
 	private static void setShowAnswerListener() {
-		VIEW.getQuestionPanel().getShowAnswerButton().removeActionListener(SHOW_ANSWER_LISTENER);
-		VIEW.getQuestionPanel().getShowAnswerButton().addActionListener(SHOW_ANSWER_LISTENER);
+		GUI.getQuestionPanel().getShowAnswerButton().removeActionListener(SHOW_ANSWER_LISTENER);
+		GUI.getQuestionPanel().getShowAnswerButton().addActionListener(SHOW_ANSWER_LISTENER);
 	}
 
 	private static void setNextQuestionListener() {
-		VIEW.getDifficultyPanel().getEasyButton().removeActionListener(NEXT_QUESTION_LISTENER_EASY);		
-		VIEW.getDifficultyPanel().getEasyButton().addActionListener(NEXT_QUESTION_LISTENER_EASY);		
+		GUI.getDifficultyPanel().getEasyButton().removeActionListener(NEXT_QUESTION_LISTENER_EASY);		
+		GUI.getDifficultyPanel().getEasyButton().addActionListener(NEXT_QUESTION_LISTENER_EASY);		
 		
-		VIEW.getDifficultyPanel().getMediumButton().removeActionListener(NEXT_QUESTION_LISTENER_MEDIUM);		
-		VIEW.getDifficultyPanel().getMediumButton().addActionListener(NEXT_QUESTION_LISTENER_MEDIUM);		
+		GUI.getDifficultyPanel().getMediumButton().removeActionListener(NEXT_QUESTION_LISTENER_MEDIUM);		
+		GUI.getDifficultyPanel().getMediumButton().addActionListener(NEXT_QUESTION_LISTENER_MEDIUM);		
 		
-		VIEW.getDifficultyPanel().getHardButton().removeActionListener(NEXT_QUESTION_LISTENER_HARD);		
-		VIEW.getDifficultyPanel().getHardButton().addActionListener(NEXT_QUESTION_LISTENER_HARD);		
+		GUI.getDifficultyPanel().getHardButton().removeActionListener(NEXT_QUESTION_LISTENER_HARD);		
+		GUI.getDifficultyPanel().getHardButton().addActionListener(NEXT_QUESTION_LISTENER_HARD);		
 	}	
 
 }

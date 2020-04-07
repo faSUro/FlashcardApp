@@ -5,6 +5,11 @@ import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * The main frame that allows to slide the deck
+ * question by question with the relative answer.
+ *
+ */
 @SuppressWarnings("serial")
 public class StudyDeckFrame extends JFrame {
 	
