@@ -5,47 +5,62 @@ import java.awt.event.ActionListener;
 import java.util.TreeMap;
 
 import it.fasuro.flashcardApp.model.Deck;
-import it.fasuro.flashcardApp.view.AnswerPanel;
 import it.fasuro.flashcardApp.view.StudyDeckFrame;
 
 public class Controller {
 	
-	private final StudyDeckFrame view = new StudyDeckFrame();
-	private final TreeMap<String, String> model;
+	private final static StudyDeckFrame VIEW = new StudyDeckFrame();
+	private static TreeMap<String, String> MODEL;
 	
 	private static int COUNTER = 0;
 	private static int TOTAL_QUESTIONS;
-	private Object[] keySet;
+	private static Object[] KEY_SET;
+	
+	private static ActionListener SHOW_ANSWER_LISTENER = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			VIEW.getAnswerPanel().setAnswer(MODEL.get(KEY_SET[COUNTER].toString()));
+			
+			setNextQuestionListener();	
+		}		
+	};
+	
+	private static ActionListener NEXT_QUESTION_LISTENER = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			COUNTER++;
+			VIEW.getQuestionPanel().setQuestion(KEY_SET[COUNTER].toString());
+			VIEW.getAnswerPanel().setAnswer("");
+			
+			setShowAnswerListener();	
+		}		
+	};
 	
 	public Controller(Deck deck) {
-		model = deck.getFcToStudy();
+		MODEL = deck.getFcToStudy();
 		
-		keySet = model.keySet().toArray();
-		TOTAL_QUESTIONS = keySet.length;
+		KEY_SET = MODEL.keySet().toArray();
+		TOTAL_QUESTIONS = KEY_SET.length;
 		
 		setFirstQuestionListener();
 	}
 
 	private void setFirstQuestionListener() {
-		view.getAnswerPanel().getShowAnswerButton().addActionListener(new ActionListener() {
+		VIEW.getQuestionPanel().getShowAnswerButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				view.getQuestionPanel().getQuestionLabel().setText(keySet[COUNTER].toString());
-				view.getAnswerPanel().setShowAnswer();
+				VIEW.getQuestionPanel().getQuestionLabel().setText(KEY_SET[COUNTER].toString());
 				
 				setShowAnswerListener();
 			}
 		});
 	}
 
-	private void setShowAnswerListener() {
-		view.getAnswerPanel().getShowAnswerButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				view.getAnswerPanel().removeAll();
-				view.getAnswerPanel().add(new AnswerPanel(model.get(keySet[COUNTER].toString())));
-				view.getAnswerPanel().revalidate();
-				view.getAnswerPanel().repaint();
-			}
-		});
+	private static void setShowAnswerListener() {
+		VIEW.getQuestionPanel().getShowAnswerButton().removeActionListener(SHOW_ANSWER_LISTENER);
+		VIEW.getQuestionPanel().getShowAnswerButton().addActionListener(SHOW_ANSWER_LISTENER);
+	}
+
+	private static void setNextQuestionListener() {
+		VIEW.getDifficultyPanel().getEasyButton().removeActionListener(NEXT_QUESTION_LISTENER);		
+		VIEW.getDifficultyPanel().getEasyButton().addActionListener(NEXT_QUESTION_LISTENER);		
 	}	
 
 }

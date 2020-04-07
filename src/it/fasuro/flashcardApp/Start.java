@@ -5,7 +5,9 @@ import it.fasuro.flashcardApp.model.Deck;
 public class Start {
 	
 	public static void main(String args[]) {
-		new Controller(new Deck());
+		Deck d = new Deck();
+
+		new Controller(d);
 	}
 
 }

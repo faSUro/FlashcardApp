@@ -33,7 +33,9 @@ public class Deck {
 				+ "utilizzate per studiare il cervello. Campioni prelevati da cadaveri o da altri animali, esaminati al microscopio, hanno tradizionalmente fornito molte informazioni "
 				+ "per comprenderne struttura e funzionamento. Le tecnologie di imaging medicale come il neuroimaging funzionale e le registrazioni elettroencefalografiche (EEG) sono"
 				+ " importanti per lo studio del cervello. L'anamnesi delle persone con lesioni cerebrali ha fornito informazioni sulla funzione di ciascuna parte del cervello.");
-		fcToStudy.put("Question 2", "Answer 2");
+		fcToStudy.put("Chi ha inventato il computer?", "Il primo computer elettronico e programmabile si chiamava Colossus. Fu inventato dagli inglesi durante la Seconda guerra Mondiale per decifrare i messaggi segreti dei nemici tedeschi. Il suo aiuto fu indispensabile per far vincere la guerra agli Alleati.\n" + 
+				"\n" + 
+				"Infatti quella macchina ogni giorno era in grado di decifrare 4 mila messaggi segreti degli eserciti nemici.");
 		fcToStudy.put("Question 3", "Answer 3");
 		fcToStudy.put("Question 4", "Answer 4");
 		fcToStudy.put("Question 5", "Answer 5");

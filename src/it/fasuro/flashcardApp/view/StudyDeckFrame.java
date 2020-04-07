@@ -10,7 +10,7 @@ public class StudyDeckFrame extends JFrame {
 	
 	private JPanel mainPanel;
 	private QuestionPanel questionPanel;
-	private ShowAnswerPanel answerPanel;
+	private AnswerPanel answerPanel;
 	private DifficultyPanel difficultyPanel;
 	
 	public StudyDeckFrame() {
@@ -25,7 +25,7 @@ public class StudyDeckFrame extends JFrame {
 		
 		questionPanel = new QuestionPanel();
 		
-		answerPanel = new ShowAnswerPanel();
+		answerPanel = new AnswerPanel("");
 		
 		difficultyPanel = new DifficultyPanel();
 		
@@ -45,7 +45,7 @@ public class StudyDeckFrame extends JFrame {
 		return questionPanel;
 	}
 	
-	public ShowAnswerPanel getAnswerPanel() {
+	public AnswerPanel getAnswerPanel() {
 		return answerPanel;
 	}
 	
