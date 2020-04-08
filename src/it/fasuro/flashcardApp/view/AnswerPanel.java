@@ -17,7 +17,7 @@ public class AnswerPanel extends JPanel {
 	private JTextArea answerArea;
 	
 	public AnswerPanel(String answer) {
-		answerArea = new JTextArea(42, 100);
+		answerArea = new JTextArea(29, 100);
 		answerArea.setLineWrap(true);
 		answerArea.setWrapStyleWord(true);
 		answerArea.setFont(new Font("Dialog", Font.BOLD, 18));

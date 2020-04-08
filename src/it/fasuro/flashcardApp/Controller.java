@@ -107,10 +107,14 @@ public class Controller {
 	private void setFirstQuestionListener() {
 		GUI.getQuestionPanel().getShowAnswerButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUI.getQuestionPanel().getQuestionLabel().setText(KEY_SET.get(COUNTER));
-				GUI.getQuestionPanel().getShowAnswerButton().setText("  Show answer  ");
+				if (TOTAL_QUESTIONS == 0) {
+					System.out.println("Congratulations! You've studied the entire deck!");
+				} else {
+					GUI.getQuestionPanel().getQuestionLabel().setText(KEY_SET.get(COUNTER));
+					GUI.getQuestionPanel().getShowAnswerButton().setText("  Show answer  ");
 				
-				setShowAnswerListener();
+					setShowAnswerListener();
+				}
 			}
 		});
 	}
