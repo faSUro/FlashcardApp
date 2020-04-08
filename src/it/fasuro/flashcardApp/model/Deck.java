@@ -1,13 +1,12 @@
 package it.fasuro.flashcardApp.model;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeMap;
 
 public class Deck {
 	
-	private ArrayList<Flashcard> fullDeck = new ArrayList<Flashcard>();
+	private TreeMap<String, Flashcard> fullDeck = new TreeMap<String, Flashcard>();
 	private TreeMap<String, String> deckToStudy = new TreeMap<String, String>();
 	
 	private Date currentDate;
@@ -19,10 +18,12 @@ public class Deck {
 		deckToStudy = generateDeckToStudy(fullDeck);
 	}
 
-	public TreeMap<String, String> generateDeckToStudy(ArrayList<Flashcard> fullDeck) {
+	public TreeMap<String, String> generateDeckToStudy(TreeMap<String, Flashcard> fullDeck) {
 		TreeMap<String, String> buffDeck = new TreeMap<String, String>();
 		
-		for (Flashcard f : fullDeck) {
+		for (String s : fullDeck.keySet()) {
+			Flashcard f = fullDeck.get(s);
+			
 			if (f.getDateToRepeat().compareTo(currentDate) <= 0) {
 				buffDeck.put(f.getQuestion(), f.getAnswer());
 			}
@@ -30,15 +31,19 @@ public class Deck {
 		return buffDeck;
 	}
 
-	public ArrayList<Flashcard> generateFullDeck() {
-		ArrayList<Flashcard> buffDeck = new ArrayList<Flashcard>();
+	public TreeMap<String, Flashcard> generateFullDeck() {
+		TreeMap<String, Flashcard> buffDeck = new TreeMap<String, Flashcard>();
 
 		for (String fileName : new File("assets").list()) {			
 			Flashcard flashcard = new Flashcard(fileName, IOHandler.getFlashcardDocument(fileName));
-			buffDeck.add(flashcard);
+			buffDeck.put(flashcard.getQuestion(), flashcard);
 		}
 		
 		return buffDeck;
+	}
+
+	public TreeMap<String, Flashcard> getFullDeck() {
+		return fullDeck;
 	}
 
 	public TreeMap<String, String> getDeckToStudy() {
