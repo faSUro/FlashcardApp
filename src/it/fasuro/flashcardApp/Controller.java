@@ -15,15 +15,16 @@ import it.fasuro.flashcardApp.view.StudyDeckFrame;
 public class Controller {
 	
 	private final static StudyDeckFrame GUI = new StudyDeckFrame();
-	private static TreeMap<String, String> DECK;
+	private static Deck MODEL;
 	
+	private static TreeMap<String, String> DECK_TO_STUDY;	
 	private static int COUNTER = 0;
 	private static int TOTAL_QUESTIONS;
 	private static Object[] KEY_SET;
 	
 	private static ActionListener SHOW_ANSWER_LISTENER = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			GUI.getAnswerPanel().setAnswer(DECK.get(KEY_SET[COUNTER].toString()));
+			GUI.getAnswerPanel().setAnswer(DECK_TO_STUDY.get(KEY_SET[COUNTER].toString()));
 			
 			setNextQuestionListener();	
 		}		
@@ -79,9 +80,11 @@ public class Controller {
 	 * @param deck
 	 */
 	public Controller(Deck deck) {
-		DECK = deck.getDeckToStudy();
+		MODEL = deck;
 		
-		KEY_SET = DECK.keySet().toArray();
+		DECK_TO_STUDY = MODEL.getDeckToStudy();
+		
+		KEY_SET = DECK_TO_STUDY.keySet().toArray();
 		TOTAL_QUESTIONS = KEY_SET.length;
 		
 		setFirstQuestionListener();

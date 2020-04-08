@@ -3,6 +3,9 @@ package it.fasuro.flashcardApp.model;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Flashcard {
@@ -33,16 +36,44 @@ public class Flashcard {
 		}
 	}
 
-	@SuppressWarnings({ "deprecation" })
 	public Date generateDate(String date) {
-		String[] buff = date.split(" ");
-		Integer[] intBuff = {0, 0, 0};
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		Calendar c = Calendar.getInstance();
+		try{
+			   c.setTime(sdf.parse(date));
+			}catch(ParseException e){
+				e.printStackTrace();
+			 }	
 		
-		intBuff[0] = Integer.parseInt(buff[0]) - 1900;
-		intBuff[1] = Integer.parseInt(buff[1]) - 1;
-		intBuff[2] = Integer.parseInt(buff[2]);
+		return c.getTime();
+	}
+
+	public void modifyDate(Difficulty d) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(dateToRepeat);
 		
-		return new Date(intBuff[0], intBuff[1], intBuff[2]);
+		switch (d) {
+		case EASY:
+			c.add(Calendar.DATE, 3);
+			break;
+		case MEDIUM:
+			c.add(Calendar.DATE, 1);
+			break;
+		}
+		
+		dateToRepeat = c.getTime();
+		reprintFlashcard();
+	}
+	
+	public void reprintFlashcard() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String buffBody = "";
+		
+		buffBody += sdf.format(dateToRepeat) + "\n";
+		buffBody += question + "\n";
+		buffBody += answer;
+		
+		IOHandler.setFlashcardDocument(fileName, buffBody);		
 	}
 
 	public String getFileName() {

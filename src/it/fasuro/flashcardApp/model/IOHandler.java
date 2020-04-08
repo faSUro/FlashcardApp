@@ -3,7 +3,9 @@ package it.fasuro.flashcardApp.model;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class IOHandler {
 
@@ -28,6 +30,19 @@ public class IOHandler {
 		}
 		
 		return input;
+	}
+	
+	public static void setFlashcardDocument(String fileName, String body) {
+		PrintWriter out;
+		
+		try {
+			out = new PrintWriter(new FileWriter("assets/" + fileName));
+			
+			out.println(body);
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 	}
 
 }
