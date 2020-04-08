@@ -79,7 +79,7 @@ public class Controller {
 	 * @param deck
 	 */
 	public Controller(Deck deck) {
-		DECK = deck.getFcToStudy();
+		DECK = deck.getDeckToStudy();
 		
 		KEY_SET = DECK.keySet().toArray();
 		TOTAL_QUESTIONS = KEY_SET.length;
