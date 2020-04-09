@@ -10,13 +10,13 @@ import java.util.Date;
 
 public class Flashcard {
 	
-	private String fileName;
+	private String filePath;
 	private Date dateToRepeat;
 	private String question = "";
 	private String answer = "";
 	
-	public Flashcard(String fileName, String flashcardDocument) {
-		this.fileName = fileName;
+	public Flashcard(String deckPath, String fileName, String flashcardDocument) {
+		filePath = deckPath + "\\" + fileName;
 		
 		BufferedReader reader = new BufferedReader(new StringReader(flashcardDocument));
 		
@@ -73,11 +73,11 @@ public class Flashcard {
 		buffBody += question + "\n";
 		buffBody += answer;
 		
-		IOHandler.setFlashcardDocument(fileName, buffBody);		
+		IOHandler.setFlashcardDocument(filePath, buffBody);		
 	}
 
 	public String getFileName() {
-		return fileName;
+		return filePath;
 	}
 
 	public Date getDateToRepeat() {

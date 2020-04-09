@@ -9,7 +9,7 @@ import it.fasuro.flashcardApp.model.Deck;
  * you should exercise, basing on the difficulty of the
  * questions.
  * @version 1.0
- * @author NicolÃ² Fasulo
+ * @author Nicolò Fasulo
  * 
  */
 
@@ -23,7 +23,7 @@ public class Start {
 	 */
 	public static void main(String args[]) {
 		
-		new Controller(new Deck());
+		new Controller(new Deck("C:\\Users\\fasul\\OneDrive\\Desktop\\test"));
 		
 	}
 

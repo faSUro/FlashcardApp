@@ -11,7 +11,10 @@ public class Deck {
 	
 	private Date currentDate;
 	
-	public Deck() {
+	public static String DECK_PATH;
+	
+	public Deck(String deckPath) {
+		DECK_PATH = deckPath;
 		currentDate = new Date();
 		
 		fullDeck = generateFullDeck();
@@ -34,8 +37,8 @@ public class Deck {
 	public TreeMap<String, Flashcard> generateFullDeck() {
 		TreeMap<String, Flashcard> buffDeck = new TreeMap<String, Flashcard>();
 
-		for (String fileName : new File("assets").list()) {			
-			Flashcard flashcard = new Flashcard(fileName, IOHandler.getFlashcardDocument(fileName));
+		for (String fileName : new File(DECK_PATH).list()) {			
+			Flashcard flashcard = new Flashcard(DECK_PATH, fileName, IOHandler.getFlashcardDocument(DECK_PATH + "\\" + fileName));
 			buffDeck.put(flashcard.getQuestion(), flashcard);
 		}
 		
@@ -48,6 +51,10 @@ public class Deck {
 
 	public TreeMap<String, String> getDeckToStudy() {
 		return deckToStudy;
+	}
+
+	public static void setDECK_PATH(String deckPath) {
+		DECK_PATH = deckPath;
 	}
 
 }

@@ -8,13 +8,23 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class IOHandler {
+	
+	public static String getDeckPath() {
+		// if this returns a void string, it's the first access.
+		// Otherwise it returns the deck path in deck_path.txt inside the assets folder.
+		return null;
+	}
+	
+	public static void setDeckPath() {
+		
+	}
 
-	public static String getFlashcardDocument(String fileName) {
+	public static String getFlashcardDocument(String filePath) {
 		BufferedReader in;
 		String input = "";
 		
 		try {
-			in = new BufferedReader(new FileReader("assets/" + fileName));
+			in = new BufferedReader(new FileReader(filePath));
 			String line;
 			
 			while ((line = in.readLine()) != null) {
@@ -32,11 +42,11 @@ public class IOHandler {
 		return input;
 	}
 	
-	public static void setFlashcardDocument(String fileName, String body) {
+	public static void setFlashcardDocument(String filePath, String body) {
 		PrintWriter out;
 		
 		try {
-			out = new PrintWriter(new FileWriter("assets/" + fileName));
+			out = new PrintWriter(new FileWriter(filePath));
 			
 			out.println(body);
 			out.close();
