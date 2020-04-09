@@ -14,7 +14,7 @@ public class IOHandler {
 		String firstBoot = "";
 		
 		try {
-			in = new BufferedReader(new FileReader("assets\\first_boot.txt"));
+			in = new BufferedReader(new FileReader("assets/first_boot.txt"));
 			
 			firstBoot += in.readLine();
 			
@@ -33,7 +33,7 @@ public class IOHandler {
 		String deckPath = "";
 		
 		try {
-			in = new BufferedReader(new FileReader("assets\\deck_path.txt"));
+			in = new BufferedReader(new FileReader("assets/deck_path.txt"));
 			
 			deckPath += in.readLine();
 			
@@ -51,7 +51,7 @@ public class IOHandler {
 		PrintWriter out;
 		
 		try {
-			out = new PrintWriter(new FileWriter("assets\\deck_path.txt"));
+			out = new PrintWriter(new FileWriter("assets/deck_path.txt"));
 			
 			out.println(deckPath);
 			out.close();
@@ -99,7 +99,7 @@ public class IOHandler {
 		PrintWriter out;
 		
 		try {
-			out = new PrintWriter(new FileWriter("assets\\first_boot.txt"));
+			out = new PrintWriter(new FileWriter("assets/first_boot.txt"));
 			
 			out.println("false");
 			out.close();

@@ -16,7 +16,7 @@ public class Flashcard {
 	private String answer = "";
 	
 	public Flashcard(String deckPath, String fileName, String flashcardDocument) {
-		filePath = deckPath + "\\" + fileName;
+		filePath = deckPath + "/" + fileName;
 		
 		BufferedReader reader = new BufferedReader(new StringReader(flashcardDocument));
 		
@@ -50,7 +50,7 @@ public class Flashcard {
 
 	public void modifyDate(Difficulty d) {
 		Calendar c = Calendar.getInstance();
-		c.setTime(dateToRepeat);
+		c.setTime(new Date());
 		
 		switch (d) {
 		case EASY:

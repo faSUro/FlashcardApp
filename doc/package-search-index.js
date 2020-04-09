@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"it.fasuro.flashcardApp"},{"l":"it.fasuro.flashcardApp.model"},{"l":"it.fasuro.flashcardApp.view"}]

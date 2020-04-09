@@ -18,6 +18,7 @@ public class FirstBootFrame extends JFrame {
 	private final static int HEIGHT = 250;
 	
 	private JTextField pathTextField;
+	private JButton browseButton; 
 	private JButton okButton; 
 	
 	public FirstBootFrame() {
@@ -28,7 +29,7 @@ public class FirstBootFrame extends JFrame {
 		Container contentPane = getContentPane();
 		contentPane.add(mainPanel);
 		
-		mainPanel.setLayout(new GridLayout(4, 1));
+		mainPanel.setLayout(new GridLayout(5, 1));
 		mainPanel.setBackground(Color.WHITE);
 		
 		JPanel emptyPanel = new JPanel();
@@ -43,11 +44,17 @@ public class FirstBootFrame extends JFrame {
 		JPanel pathPanel = new JPanel();
 		pathPanel.setBackground(Color.WHITE);
 		pathTextField = new JTextField(25);
+		browseButton = new JButton(" Browse ");
+		browseButton.setFont(new Font("Dialog", Font.BOLD, 15));
+		pathPanel.add(pathTextField); pathPanel.add(browseButton);
+		
+		JPanel okPanel = new JPanel();
+		okPanel.setBackground(Color.WHITE);
 		okButton = new JButton("  Ok  ");
 		okButton.setFont(new Font("Dialog", Font.BOLD, 15));
-		pathPanel.add(pathTextField); pathPanel.add(okButton);
+		okPanel.add(okButton);
 		
-		mainPanel.add(emptyPanel); mainPanel.add(requestPanel); mainPanel.add(pathPanel);
+		mainPanel.add(emptyPanel); mainPanel.add(requestPanel); mainPanel.add(pathPanel); mainPanel.add(okPanel);
 		
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -58,9 +65,17 @@ public class FirstBootFrame extends JFrame {
 	public String getPath() {
 		return pathTextField.getText();
 	}
+	
+	public void setPath(String path) {
+		pathTextField.setText(path);
+	}
 
 	public JButton getOkButton() {
 		return okButton;
+	}
+
+	public JButton getBrowseButton() {
+		return browseButton;
 	}
 	
 }

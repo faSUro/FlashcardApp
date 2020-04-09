@@ -2,6 +2,9 @@ package it.fasuro.flashcardApp;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.JFileChooser;
 
 import it.fasuro.flashcardApp.initialize.FirstBootFrame;
 import it.fasuro.flashcardApp.model.Deck;
@@ -13,8 +16,8 @@ import it.fasuro.flashcardApp.model.IOHandler;
  * allows to write questions and answers and to decide how often
  * you should exercise, basing on the difficulty of the
  * questions.
- * @version 1.0
- * @author Nicolò Fasulo
+ * @version 1.1
+ * @author Nicolï¿½ Fasulo
  * 
  */
 
@@ -32,6 +35,20 @@ public class Start {
 	
 		if(IOHandler.firstBoot()) {
 			FirstBootFrame firstBoot = new FirstBootFrame();
+			
+			firstBoot.getBrowseButton().addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFileChooser jfc = new JFileChooser();
+					jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+					jfc.setDialogTitle("Browse folder...");
+					int result = jfc.showSaveDialog(null);
+					if (result == JFileChooser.APPROVE_OPTION) {
+						File file = jfc.getSelectedFile();
+						firstBoot.setPath(file.getAbsolutePath());
+					}
+					
+				}			
+			});
 			
 			firstBoot.getOkButton().addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {

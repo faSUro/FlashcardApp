@@ -38,7 +38,7 @@ public class Deck {
 		TreeMap<String, Flashcard> buffDeck = new TreeMap<String, Flashcard>();
 
 		for (String fileName : new File(DECK_PATH).list()) {			
-			Flashcard flashcard = new Flashcard(DECK_PATH, fileName, IOHandler.getFlashcardDocument(DECK_PATH + "\\" + fileName));
+			Flashcard flashcard = new Flashcard(DECK_PATH, fileName, IOHandler.getFlashcardDocument(DECK_PATH + "/" + fileName));
 			buffDeck.put(flashcard.getQuestion(), flashcard);
 		}
 		
