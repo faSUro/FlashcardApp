@@ -1,6 +1,11 @@
 package it.fasuro.flashcardApp;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import it.fasuro.flashcardApp.initialize.FirstBootFrame;
 import it.fasuro.flashcardApp.model.Deck;
+import it.fasuro.flashcardApp.model.IOHandler;
 
 /**
  * This class allows to start the entire program.
@@ -15,6 +20,8 @@ import it.fasuro.flashcardApp.model.Deck;
 
 public class Start {
 	
+	private static String DECK_PATH = "";
+	
 	/**
 	 * The main method. It creates the map containing questions and
 	 * answers from a text file and "sends" it to the GUI through
@@ -22,8 +29,29 @@ public class Start {
 	 * 
 	 */
 	public static void main(String args[]) {
+	
+		if(IOHandler.firstBoot()) {
+			FirstBootFrame firstBoot = new FirstBootFrame();
+			
+			firstBoot.getOkButton().addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					DECK_PATH = firstBoot.getPath();
+					IOHandler.setDeckPath(DECK_PATH);
+					IOHandler.firstBootDone();
+					
+					firstBoot.dispose();					
+					startApp();	
+				}
+			});			
+		} else {
+			DECK_PATH = IOHandler.getDeckPath();
+			startApp();	
+		}
+	}
+
+	private static void startApp() {
 		
-		new Controller(new Deck("C:\\Users\\fasul\\OneDrive\\Desktop\\test"));
+		new Controller(new Deck(DECK_PATH));
 		
 	}
 
