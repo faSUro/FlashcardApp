@@ -12,6 +12,7 @@ import it.fasuro.flashcardApp.model.Deck;
 import it.fasuro.flashcardApp.model.Flashcard;
 import it.fasuro.flashcardApp.view.BrowseFolderFrame;
 import it.fasuro.flashcardApp.view.CloseAppFrame;
+import it.fasuro.flashcardApp.view.createDeck.CreateDeckFrame;
 import it.fasuro.flashcardApp.view.studyDeck.StudyDeckFrame;
 
 /**
@@ -21,8 +22,9 @@ import it.fasuro.flashcardApp.view.studyDeck.StudyDeckFrame;
  */
 public class Controller {
 	
+	private static CreateDeckFrame CREATE_DECK_GUI;
 	private static StudyDeckFrame STUDY_DECK_GUI;
-	private static Deck MODEL;
+	private static Deck DECK_MODEL;
 	
 	private static StartMenuOptions CHOSEN_OPTION;
 	private static String DECK_PATH;
@@ -66,6 +68,7 @@ public class Controller {
 				
 				switch (option) {
 				case CREATE_DECK:
+					createDeck();
 					break;
 				case STUDY_DECK:
 					studyDeck();
@@ -74,12 +77,19 @@ public class Controller {
 		});			
 	}
 	
+	public void createDeck() {
+		CREATE_DECK_GUI = new CreateDeckFrame();
+		
+		CREATE_DECK_GUI.getCreateFlashcardButton().addActionListener(CREATE_FLASHCARD_LISTENER);
+		CREATE_DECK_GUI.getEndButton().addActionListener(END_APP_LISTENER);
+	}
+
 	public void studyDeck() {
-		MODEL = new Deck(DECK_PATH);
+		DECK_MODEL = new Deck(DECK_PATH);
 		STUDY_DECK_GUI = new StudyDeckFrame();
 		
-		FULL_DECK = MODEL.getFullDeck();
-		DECK_TO_STUDY = MODEL.getDeckToStudy();
+		FULL_DECK = DECK_MODEL.getFullDeck();
+		DECK_TO_STUDY = DECK_MODEL.getDeckToStudy();
 		
 		KEY_SET = new ArrayList<String>(DECK_TO_STUDY.keySet());
 		TOTAL_QUESTIONS = KEY_SET.size();
@@ -88,6 +98,8 @@ public class Controller {
 	}
 
 	private static void setShowAnswerListener() {
+		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().removeActionListener(FIRST_QUESTION_LISTENER);
+		
 		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().removeActionListener(SHOW_ANSWER_LISTENER);
 		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().addActionListener(SHOW_ANSWER_LISTENER);
 	}
@@ -172,6 +184,24 @@ public class Controller {
 				new CloseAppFrame(CHOSEN_OPTION);
 			}
 		}		
+	};
+	
+	private static ActionListener CREATE_FLASHCARD_LISTENER = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			String body = CREATE_DECK_GUI.getQuestion() + "\n" + CREATE_DECK_GUI.getAnswer();
+			
+			Flashcard flashcard = new Flashcard(DECK_PATH, body);
+			flashcard.reprintFlashcard();
+			
+			CREATE_DECK_GUI.initializeQuestionTextField();
+			CREATE_DECK_GUI.initializeAnswerArea();
+		}
+	};
+	
+	private static ActionListener END_APP_LISTENER = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
+		}
 	};
 
 }

@@ -38,6 +38,40 @@ public class Flashcard {
 			e.printStackTrace();
 		}
 	}
+	
+	public Flashcard(String deckPath, String body) {
+		filePath = deckPath + "/" + generateFileName();
+		dateToRepeat = new Date();
+		
+		BufferedReader reader = new BufferedReader(new StringReader(body));
+		
+		try {			
+			question = reader.readLine();
+			
+			String line;
+			while ((line = reader.readLine()) != null) {
+				answer = answer + line + "\n";
+			}
+			
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public String generateFileName() {
+		String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		int count = 10;
+		
+		StringBuilder builder = new StringBuilder();
+		while(count-- != 0) {
+			int character = (int)(Math.random() * ALPHA_NUMERIC_STRING.length());
+			builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+		}
+		
+		String fileName = "AUTO_GENERATED" + builder.toString() + ".txt";
+		return fileName;
+	}
 
 	public Date generateDate(String date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -79,7 +113,7 @@ public class Flashcard {
 		IOHandler.setFlashcardDocument(filePath, buffBody);		
 	}
 
-	public String getFileName() {
+	public String getFilePath() {
 		return filePath;
 	}
 
