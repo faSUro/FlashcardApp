@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.Date;
 import java.util.TreeMap;
 
+import it.fasuro.flashcardApp.IOHandler;
+
 public class Deck {
 	
 	private TreeMap<String, Flashcard> fullDeck = new TreeMap<String, Flashcard>();

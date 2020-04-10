@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp.start;
+package it.fasuro.flashcardApp;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,8 +9,9 @@ import java.util.TreeMap;
 import javax.swing.JFileChooser;
 
 import it.fasuro.flashcardApp.model.Deck;
-import it.fasuro.flashcardApp.model.Difficulty;
 import it.fasuro.flashcardApp.model.Flashcard;
+import it.fasuro.flashcardApp.view.BrowseFolderFrame;
+import it.fasuro.flashcardApp.view.CloseAppFrame;
 import it.fasuro.flashcardApp.view.studyDeck.StudyDeckFrame;
 
 /**
@@ -23,6 +24,7 @@ public class Controller {
 	private static StudyDeckFrame STUDY_DECK_GUI;
 	private static Deck MODEL;
 	
+	private static StartMenuOptions CHOSEN_OPTION;
 	private static String DECK_PATH;
 	
 	private static TreeMap<String, Flashcard> FULL_DECK;
@@ -31,14 +33,16 @@ public class Controller {
 	private static int TOTAL_QUESTIONS;
 	private static ArrayList<String> KEY_SET;
 	
+
 	/**
 	 * Initializes the DECK static variable and makes
 	 * an array that contains the key set. It also 
 	 * initializes the TOTAL_QUESTIONS variable (with 
 	 * the length of the key set).
-	 * @param deck
+	 * @param option
 	 */
 	public Controller(StartMenuOptions option) {
+		CHOSEN_OPTION = option;
 		BrowseFolderFrame browseFrame = new BrowseFolderFrame();
 		
 		browseFrame.getBrowseButton().addActionListener(new ActionListener() {
@@ -80,22 +84,7 @@ public class Controller {
 		KEY_SET = new ArrayList<String>(DECK_TO_STUDY.keySet());
 		TOTAL_QUESTIONS = KEY_SET.size();
 		
-		setFirstQuestionListener();
-	}
-
-	private void setFirstQuestionListener() {
-		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (TOTAL_QUESTIONS == 0) {
-					System.out.println("Congratulations! You've studied the entire deck!");
-				} else {
-					STUDY_DECK_GUI.getQuestionPanel().getQuestionLabel().setText(KEY_SET.get(COUNTER));
-					STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().setText("  Show answer  ");
-				
-					setShowAnswerListener();
-				}
-			}
-		});
+		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().addActionListener(FIRST_QUESTION_LISTENER);
 	}
 
 	private static void setShowAnswerListener() {
@@ -113,6 +102,19 @@ public class Controller {
 		STUDY_DECK_GUI.getDifficultyPanel().getHardButton().removeActionListener(NEXT_QUESTION_LISTENER_HARD);		
 		STUDY_DECK_GUI.getDifficultyPanel().getHardButton().addActionListener(NEXT_QUESTION_LISTENER_HARD);		
 	}	
+	
+	private static ActionListener FIRST_QUESTION_LISTENER = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			if (TOTAL_QUESTIONS == 0) {
+				new CloseAppFrame(CHOSEN_OPTION);
+			} else {
+				STUDY_DECK_GUI.getQuestionPanel().getQuestionLabel().setText(KEY_SET.get(COUNTER));
+				STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().setText("  Show answer  ");
+			
+				setShowAnswerListener();
+			}
+		}	
+	};
 	
 	private static ActionListener SHOW_ANSWER_LISTENER = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
@@ -133,7 +135,7 @@ public class Controller {
 			
 				setShowAnswerListener();	
 			} else {
-				System.out.println("Congratulations! You've studied the entire deck!");
+				new CloseAppFrame(CHOSEN_OPTION);
 			}
 		}		
 	};
@@ -149,7 +151,7 @@ public class Controller {
 			
 				setShowAnswerListener();	
 			} else {
-				System.out.println("Congratulations! You've studied the entire deck!");
+				new CloseAppFrame(CHOSEN_OPTION);
 			}
 		}		
 	};
@@ -167,7 +169,7 @@ public class Controller {
 			
 				setShowAnswerListener();	
 			} else {
-				System.out.println("Congratulations! You've studied the entire deck!");
+				new CloseAppFrame(CHOSEN_OPTION);
 			}
 		}		
 	};

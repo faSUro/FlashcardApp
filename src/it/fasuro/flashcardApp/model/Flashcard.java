@@ -8,6 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import it.fasuro.flashcardApp.Difficulty;
+import it.fasuro.flashcardApp.IOHandler;
+
 public class Flashcard {
 	
 	private String filePath;

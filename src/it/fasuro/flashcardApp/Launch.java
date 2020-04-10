@@ -3,9 +3,7 @@ package it.fasuro.flashcardApp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import it.fasuro.flashcardApp.start.Controller;
-import it.fasuro.flashcardApp.start.StartMenuFrame;
-import it.fasuro.flashcardApp.start.StartMenuOptions;
+import it.fasuro.flashcardApp.view.StartMenuFrame;
 
 /**
  * This class allows to start the entire program.

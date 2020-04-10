@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp.model;
+package it.fasuro.flashcardApp;
 
 public enum Difficulty {
 	

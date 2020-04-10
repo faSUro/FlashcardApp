@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp.start;
+package it.fasuro.flashcardApp;
 
 public enum StartMenuOptions {
 	

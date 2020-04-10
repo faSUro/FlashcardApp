@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp.model;
+package it.fasuro.flashcardApp;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -38,6 +38,7 @@ public class IOHandler {
 			out = new PrintWriter(new FileWriter(filePath));
 			
 			out.println(body);
+			
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
