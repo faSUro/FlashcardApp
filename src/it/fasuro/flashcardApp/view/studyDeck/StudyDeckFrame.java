@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp.view;
+package it.fasuro.flashcardApp.view.studyDeck;
 
 import java.awt.BorderLayout;
 import java.awt.Container;

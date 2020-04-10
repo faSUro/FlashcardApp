@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp.initialize;
+package it.fasuro.flashcardApp.start;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class FirstBootFrame extends JFrame {
+public class BrowseFolderFrame extends JFrame {
 	
 	private final static int WIDTH = 500;
 	private final static int HEIGHT = 250;
@@ -21,7 +21,7 @@ public class FirstBootFrame extends JFrame {
 	private JButton browseButton; 
 	private JButton okButton; 
 	
-	public FirstBootFrame() {
+	public BrowseFolderFrame() {
 		setTitle("FlashcardApp");
 		this.setSize(WIDTH, HEIGHT);
 		
@@ -37,7 +37,7 @@ public class FirstBootFrame extends JFrame {
 		
 		JPanel requestPanel = new JPanel();
 		requestPanel.setBackground(Color.WHITE);
-		JLabel requestLabel = new JLabel("Insert the path of the folder containing the flashcards: ");
+		JLabel requestLabel = new JLabel("Insert the path of the deck folder: ");
 		requestLabel.setFont(new Font("Dialog", Font.BOLD, 15));
 		requestPanel.add(requestLabel);
 		
@@ -54,7 +54,8 @@ public class FirstBootFrame extends JFrame {
 		okButton.setFont(new Font("Dialog", Font.BOLD, 15));
 		okPanel.add(okButton);
 		
-		mainPanel.add(emptyPanel); mainPanel.add(requestPanel); mainPanel.add(pathPanel); mainPanel.add(okPanel);
+		mainPanel.add(emptyPanel); mainPanel.add(requestPanel); 
+		mainPanel.add(pathPanel); mainPanel.add(okPanel);
 		
 		setLocationRelativeTo(null);
 		setVisible(true);
