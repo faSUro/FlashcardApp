@@ -21,6 +21,7 @@ public class StartMenuFrame extends JFrame {
 	public StartMenuFrame() {
 		setTitle("FlashcardApp");
 		setSize(WIDTH, HEIGHT);
+		setResizable(false);
 		
 		JPanel mainPanel = new JPanel();
 		Container contentPane = getContentPane();
