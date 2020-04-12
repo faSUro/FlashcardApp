@@ -17,6 +17,7 @@ public class ErrorDisplayer extends JFrame {
 	public ErrorDisplayer(String error) {
 		setTitle("Something went wrong...");
 		setSize(WIDTH, HEIGHT);
+		setResizable(false);
 		
 		JPanel mainPanel = new JPanel();
 		Container contentPane = getContentPane();
@@ -30,6 +31,7 @@ public class ErrorDisplayer extends JFrame {
 		
 		contentPane.add(mainPanel);
 		
+		setAlwaysOnTop(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
