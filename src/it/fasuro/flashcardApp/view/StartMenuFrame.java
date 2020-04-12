@@ -33,7 +33,7 @@ public class StartMenuFrame extends JFrame {
 				+ "                                          ");
 		JLabel emptyLabel2 = new JLabel("                                     "
 				+ "                                          ");
-		createDeckButton = new JButton("  Create deck  ");
+		createDeckButton = new JButton("  Create flashcards  ");
 		createDeckButton.setFont(new Font("Dialog", Font.BOLD, 18));
 		createDeckPanel.add(emptyLabel1); createDeckPanel.add(emptyLabel2);
 		createDeckPanel.add(createDeckButton);

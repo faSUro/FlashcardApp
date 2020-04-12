@@ -14,7 +14,7 @@ import it.fasuro.flashcardApp.view.StartMenuFrame;
  * allows to write questions and answers and to decide how often
  * you should exercise, basing on the difficulty of the
  * questions.
- * @version 1.1
+ * @version 1.2
  * @author Nicolò Fasulo
  * 
  */
@@ -27,14 +27,7 @@ public class Launch {
 	 * the Controller class.
 	 * 
 	 */
-	public static void main(String args[]) {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
-			e.printStackTrace();
-		}
-		
+	public static void main(String args[]) {		
 		StartMenuFrame startMenu = new StartMenuFrame();
 		
 		startMenu.getCreateDeckButton().addActionListener(new ActionListener() {
