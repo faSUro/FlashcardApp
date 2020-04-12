@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.TreeMap;
 
 import it.fasuro.flashcardApp.IOHandler;
+import it.fasuro.flashcardApp.view.ErrorDisplayer;
 
 public class Deck {
 	
@@ -37,9 +38,30 @@ public class Deck {
 	public TreeMap<String, Flashcard> generateFullDeck() {
 		TreeMap<String, Flashcard> buffDeck = new TreeMap<String, Flashcard>();
 
-		for (String fileName : new File(deckPath).list()) {			
-			Flashcard flashcard = new Flashcard(deckPath, fileName, IOHandler.getFlashcardDocument(deckPath + "/" + fileName));
-			buffDeck.put(flashcard.getQuestion(), flashcard);
+		try {
+			File deck = new File(deckPath);
+			if (!isValidPath(deck)) {
+				throw new IllegalArgumentException();
+			}
+		} catch (IllegalArgumentException e) {
+			new ErrorDisplayer("               You've entered an invalid path!");
+			return null;
+		}
+		
+		for (String fileName : new File(deckPath).list()) {	
+			if (fileName.endsWith(".txt")) {
+				Flashcard flashcard = new Flashcard(deckPath, fileName, IOHandler.getFlashcardDocument(deckPath + "/" + fileName));
+				buffDeck.put(flashcard.getQuestion(), flashcard);
+			}
+		}
+		
+		try {
+			if (buffDeck.isEmpty()) {
+				throw new IllegalArgumentException();
+			}
+		} catch (IllegalArgumentException e) {
+			new ErrorDisplayer("     The selected folder doesn't contain any flashcard!");
+			return null;
 		}
 		
 		return buffDeck;
@@ -54,6 +76,10 @@ public class Deck {
 	public TreeMap<String, String> generateDeckToStudy(TreeMap<String, Flashcard> fullDeck) {
 		TreeMap<String, String> buffDeck = new TreeMap<String, String>();
 		
+		if (fullDeck == null) {
+			return null;
+		}
+		
 		for (String s : fullDeck.keySet()) {
 			Flashcard f = fullDeck.get(s);
 			
@@ -63,6 +89,23 @@ public class Deck {
 		}
 		
 		return buffDeck;
+	}
+
+	/**
+	 * Check if a File is a valid folder path: returns true
+	 * if it is valid, false otherwise.
+	 * @param path
+	 */
+	private boolean isValidPath(File path) {
+		if (!path.isDirectory()) {
+			return false;
+		}
+		
+		if(path.exists()) {
+			return true;
+		} else {
+			return false;
+		}		
 	}
 
 	public TreeMap<String, Flashcard> getFullDeck() {

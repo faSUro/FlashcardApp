@@ -85,8 +85,12 @@ public class Controller {
 	}
 
 	public void studyDeck() {
-		DECK_MODEL = new Deck(DECK_PATH);
+		DECK_MODEL = new Deck(DECK_PATH);		
 		STUDY_DECK_GUI = new StudyDeckFrame();
+		
+		if (DECK_MODEL.getFullDeck() == null) {
+			return;
+		}
 		
 		FULL_DECK = DECK_MODEL.getFullDeck();
 		DECK_TO_STUDY = DECK_MODEL.getDeckToStudy();
