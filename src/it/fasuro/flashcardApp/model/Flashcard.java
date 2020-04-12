@@ -18,6 +18,14 @@ public class Flashcard {
 	private String question = "";
 	private String answer = "";
 	
+	/**
+	 * Builds the flashcard file path starting from the deck path and the file
+	 * name (the flashcard file already exists if this constructor is used).
+	 * Then, it assigns the class variables relying on the file content.
+	 * @param deckPath
+	 * @param fileName
+	 * @param flashcardDocument
+	 */
 	public Flashcard(String deckPath, String fileName, String flashcardDocument) {
 		filePath = deckPath + "/" + fileName;
 		
@@ -39,8 +47,15 @@ public class Flashcard {
 		}
 	}
 	
+	/**
+	 * Creates a completely new flashcard (the file doesn't exists yet)
+	 * with a random file name relying on the deck path and the body 
+	 * (question + answer) and using the today date.
+	 * @param deckPath
+	 * @param body
+	 */
 	public Flashcard(String deckPath, String body) {
-		filePath = deckPath + "/" + generateFileName();
+		filePath = deckPath + "/" + generateFileName(); //if working on windows: / must be replaced with \\
 		dateToRepeat = new Date();
 		
 		BufferedReader reader = new BufferedReader(new StringReader(body));
@@ -59,7 +74,16 @@ public class Flashcard {
 		}
 	}
 
-	public String generateFileName() {
+	/**
+	 * Generates fileName built from a default string plus
+	 * a random alphanumeric string of 10 characters.
+	 * It does not guarantee that the file name doesn't
+	 * exists already (in that case it would be overwritten).
+	 * Even though the probability is low, it's highly recommended
+	 * to manually change the name after the creation,
+	 * @return fileName
+	 */
+	public String generateFileName() { //to be corrected
 		String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		int count = 10;
 		
@@ -73,6 +97,11 @@ public class Flashcard {
 		return fileName;
 	}
 
+	/**
+	 * Returns a yyyy/MM/dd format Date based on a String
+	 * with the same format.
+	 * @param date
+	 */
 	public Date generateDate(String date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		Calendar c = Calendar.getInstance();
@@ -85,11 +114,18 @@ public class Flashcard {
 		return c.getTime();
 	}
 
-	public void modifyDate(Difficulty d) {
+	/**
+	 * Modifies the date starting from the difficulty:
+	 * +3 days for the EASY case, +1 for the MEDIUM one.
+	 * The sum is calculated from today.
+	 * Reprints the flashcard.
+	 * @param difficulty
+	 */
+	public void modifyDate(Difficulty difficulty) {
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
 		
-		switch (d) {
+		switch (difficulty) {
 		case EASY:
 			c.add(Calendar.DATE, 3);
 			break;
@@ -102,6 +138,10 @@ public class Flashcard {
 		reprintFlashcard();
 	}
 	
+	/**
+	 * Invokes the setFlashcardDocument method to
+	 * save the date changes.
+	 */
 	public void reprintFlashcard() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		String buffBody = "";
