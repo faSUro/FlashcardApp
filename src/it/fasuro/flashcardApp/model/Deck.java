@@ -37,16 +37,6 @@ public class Deck {
 	 */
 	public TreeMap<String, Flashcard> generateFullDeck() {
 		TreeMap<String, Flashcard> buffDeck = new TreeMap<String, Flashcard>();
-
-		try {
-			File deck = new File(deckPath);
-			if (!isValidPath(deck)) {
-				throw new IllegalArgumentException();
-			}
-		} catch (IllegalArgumentException e) {
-			new ErrorDisplayer("               You've entered an invalid path!");
-			return null;
-		}
 		
 		for (String fileName : new File(deckPath).list()) {	
 			if (fileName.endsWith(".txt")) {
@@ -89,23 +79,6 @@ public class Deck {
 		}
 		
 		return buffDeck;
-	}
-
-	/**
-	 * Check if a File is a valid folder path: returns true
-	 * if it is valid, false otherwise.
-	 * @param path
-	 */
-	private boolean isValidPath(File path) {
-		if (!path.isDirectory()) {
-			return false;
-		}
-		
-		if(path.exists()) {
-			return true;
-		} else {
-			return false;
-		}		
 	}
 
 	public TreeMap<String, Flashcard> getFullDeck() {

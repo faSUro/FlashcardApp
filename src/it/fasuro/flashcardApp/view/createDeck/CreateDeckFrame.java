@@ -2,8 +2,10 @@ package it.fasuro.flashcardApp.view.createDeck;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,6 +25,8 @@ public class CreateDeckFrame extends JFrame {
 
 	public CreateDeckFrame() {
 		setTitle("FlashcardApp");
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		setSize(screenSize);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		JPanel mainPanel = new JPanel();
@@ -41,7 +45,7 @@ public class CreateDeckFrame extends JFrame {
 		JPanel answerPanel = new JPanel();
 		JLabel insertAnswerLabel = new JLabel("Insert answer: ");
 		insertAnswerLabel.setFont(new Font("Dialog", Font.BOLD, 18));
-		answerArea = new JTextArea(29, 100);
+		answerArea = new JTextArea(screenSize.height/27, screenSize.width/18); //if in Windows: change the 27-18 parameters
 		answerArea.setLineWrap(true);
 		answerArea.setWrapStyleWord(true);
 		answerArea.setFont(new Font("Dialog", Font.PLAIN, 18));

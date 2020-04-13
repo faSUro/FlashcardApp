@@ -12,6 +12,7 @@ import it.fasuro.flashcardApp.model.Deck;
 import it.fasuro.flashcardApp.model.Flashcard;
 import it.fasuro.flashcardApp.view.BrowseFolderFrame;
 import it.fasuro.flashcardApp.view.CloseAppFrame;
+import it.fasuro.flashcardApp.view.ErrorDisplayer;
 import it.fasuro.flashcardApp.view.createDeck.CreateDeckFrame;
 import it.fasuro.flashcardApp.view.studyDeck.StudyDeckFrame;
 
@@ -64,6 +65,16 @@ public class Controller {
 			public void actionPerformed(ActionEvent e) {
 				DECK_PATH = browseFrame.getPath();
 				
+				try {
+					File deck = new File(DECK_PATH);
+					if (!isValidPath(deck)) {
+						throw new IllegalArgumentException();
+					}
+				} catch (IllegalArgumentException ex) {
+					new ErrorDisplayer("               You've entered an invalid path!");
+					return;
+				}
+				
 				browseFrame.dispose();
 				
 				switch (option) {
@@ -99,6 +110,23 @@ public class Controller {
 		TOTAL_QUESTIONS = KEY_SET.size();
 		
 		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().addActionListener(FIRST_QUESTION_LISTENER);
+	}
+	
+	/**
+	 * Check if a File is a valid folder path: returns true
+	 * if it is valid, false otherwise.
+	 * @param path
+	 */
+	private boolean isValidPath(File path) {
+		if (!path.isDirectory()) {
+			return false;
+		}
+		
+		if(path.exists()) {
+			return true;
+		} else {
+			return false;
+		}		
 	}
 
 	private static void setShowAnswerListener() {
