@@ -3,6 +3,9 @@ package it.fasuro.flashcardApp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import it.fasuro.flashcardApp.view.StartMenuFrame;
 
 /**
@@ -16,7 +19,7 @@ import it.fasuro.flashcardApp.view.StartMenuFrame;
  * 
  */
 
-public class Launch {
+public class Launcher {
 
 	/**
 	 * The main method. It creates the map containing questions and
@@ -25,6 +28,13 @@ public class Launch {
 	 * 
 	 */
 	public static void main(String args[]) {		
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e1) {
+			e1.printStackTrace();
+		}
+		
 		StartMenuFrame startMenu = new StartMenuFrame();
 		
 		startMenu.getCreateDeckButton().addActionListener(new ActionListener() {
