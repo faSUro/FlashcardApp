@@ -47,7 +47,7 @@ public class Launcher {
 		
 		startMenu.getCreateDeckButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Controller(StartMenuOptions.CREATE_DECK);
+				new Controller(StartMenuOptions.CREATE_FLASHCARDS);
 				
 				startMenu.dispose();
 			}			

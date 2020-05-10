@@ -39,16 +39,22 @@ public class Controller {
 	
 
 	/**
-	 * Initializes the DECK static variable and makes
-	 * an array that contains the key set. It also 
-	 * initializes the TOTAL_QUESTIONS variable (with 
-	 * the length of the key set).
+	 * Creates a new frame to select the folder containing the flashcard
+	 * (with a JFileChooser); then it calls the method that allows to
+	 * create new flashcards/study an existent deck, depending on the
+	 * option passed as argument.
 	 * @param option
+	 * 
 	 */
 	public Controller(StartMenuOptions option) {
 		CHOSEN_OPTION = option;
-		BrowseFolderFrame browseFrame = new BrowseFolderFrame();
+		BrowseFolderFrame browseFrame = new BrowseFolderFrame(); //creates the frame to select the folder
 		
+		/*
+		 * This block adds an action listener to the browse button to create
+		 * a file chooser.
+		 * 
+		 */
 		browseFrame.getBrowseButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jfc = new JFileChooser();
@@ -62,13 +68,18 @@ public class Controller {
 			}			
 		});
 		
+		/*
+		 * This block adds an action listener to the ok button to 
+		 * confirm the chosen path and start creating flashcards/studying.
+		 * 
+		 */
 		browseFrame.getOkButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DECK_PATH = browseFrame.getPath();
 				
 				try {
 					File deck = new File(DECK_PATH);
-					if (!isValidPath(deck)) {
+					if (!isValidPath(deck)) {	//checks if the path chosen is valid
 						throw new IllegalArgumentException();
 					}
 				} catch (IllegalArgumentException ex) {
@@ -79,8 +90,8 @@ public class Controller {
 				browseFrame.dispose();
 				
 				switch (option) {
-				case CREATE_DECK:
-					createDeck();
+				case CREATE_FLASHCARDS:
+					createFlashcards();
 					break;
 				case STUDY_DECK:
 					studyDeck();
@@ -89,19 +100,27 @@ public class Controller {
 		});			
 	}
 	
-	public void createDeck() {
+	/**
+	 * Creates a frame to create new flashcards and adds its listeners.
+	 * 
+	 */
+	public void createFlashcards() {
 		CREATE_DECK_GUI = new CreateFlashcardsFrame();
 		
 		CREATE_DECK_GUI.getCreateFlashcardButton().addActionListener(CREATE_FLASHCARD_LISTENER);
 		CREATE_DECK_GUI.getEndButton().addActionListener(END_APP_LISTENER);
 	}
 
+	/**
+	 * Initializes the DECK_MODEL variable and the GUI to study it.
+	 * 
+	 */
 	public void studyDeck() {
 		DECK_MODEL = new Deck(DECK_PATH);		
 		STUDY_DECK_GUI = new StudyDeckFrame();
 		
-		if (DECK_MODEL.getFullDeck() == null) {
-			return;
+		if (DECK_MODEL.getFullDeck() == null) { //in case the deck folder is empty, the method "stops" here
+			return;								//an exception has been thrown already
 		}
 		
 		FULL_DECK = DECK_MODEL.getFullDeck();
@@ -110,13 +129,14 @@ public class Controller {
 		KEY_SET = new ArrayList<String>(DECK_TO_STUDY.keySet());
 		TOTAL_QUESTIONS = KEY_SET.size();
 		
-		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().addActionListener(FIRST_QUESTION_LISTENER);
+		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().addActionListener(FIRST_QUESTION_LISTENER); //adds the listener for the first click to start studying
 	}
 	
 	/**
 	 * Check if a File is a valid folder path: returns true
 	 * if it is valid, false otherwise.
 	 * @param path
+	 * 
 	 */
 	private boolean isValidPath(File path) {
 		if (!path.isDirectory()) {
@@ -130,6 +150,10 @@ public class Controller {
 		}		
 	}
 
+	/**
+	 * Removes the previous listeners and resets the listener that shows the answer to the show answer button.
+	 * 
+	 */
 	private static void setShowAnswerListener() {
 		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().removeActionListener(FIRST_QUESTION_LISTENER);
 		
@@ -137,6 +161,10 @@ public class Controller {
 		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().addActionListener(SHOW_ANSWER_LISTENER);
 	}
 
+	/**
+	 * Removes and resets the listeners of the three buttons that lead to the next question.
+	 * 
+	 */
 	private static void setNextQuestionListener() {
 		STUDY_DECK_GUI.getDifficultyPanel().getEasyButton().removeActionListener(NEXT_QUESTION_LISTENER_EASY);		
 		STUDY_DECK_GUI.getDifficultyPanel().getEasyButton().addActionListener(NEXT_QUESTION_LISTENER_EASY);		
@@ -148,6 +176,11 @@ public class Controller {
 		STUDY_DECK_GUI.getDifficultyPanel().getHardButton().addActionListener(NEXT_QUESTION_LISTENER_HARD);		
 	}	
 	
+	/**
+	 * Listener that set the first question and changes the button text to "Show answer".
+	 * Then it set the following listener.
+	 * 
+	 */
 	private static ActionListener FIRST_QUESTION_LISTENER = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			if (TOTAL_QUESTIONS == 0) {
@@ -161,6 +194,11 @@ public class Controller {
 		}	
 	};
 	
+	/**
+	 * Listener that reveals the answer to the current question.
+	 * Then it set the following listener.
+	 * 
+	 */
 	private static ActionListener SHOW_ANSWER_LISTENER = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			STUDY_DECK_GUI.getAnswerPanel().setAnswer(DECK_TO_STUDY.get(KEY_SET.get(COUNTER)));
@@ -169,6 +207,11 @@ public class Controller {
 		}		
 	};
 	
+	/**
+	 * Listener that sets the new question and that modifies the date in the current flashcard (easy case).
+	 * Then it set the following listener.
+	 * 
+	 */
 	private static ActionListener NEXT_QUESTION_LISTENER_EASY = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			FULL_DECK.get(KEY_SET.get(COUNTER)).modifyDate(Difficulty.EASY);
@@ -185,6 +228,11 @@ public class Controller {
 		}		
 	};
 	
+	/**
+	 * Listener that sets the new question and that modifies the date in the current flashcard (medium case).
+	 * Then it set the following listener.
+	 * 
+	 */
 	private static ActionListener NEXT_QUESTION_LISTENER_MEDIUM = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			FULL_DECK.get(KEY_SET.get(COUNTER)).modifyDate(Difficulty.MEDIUM);
@@ -201,6 +249,11 @@ public class Controller {
 		}		
 	};
 	
+	/**
+	 * Listener that sets the new question and re-adds the current question to the key set (hard case).
+	 * Then it set the following listener.
+	 * 
+	 */
 	private static ActionListener NEXT_QUESTION_LISTENER_HARD = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			KEY_SET.add(KEY_SET.get(COUNTER));
@@ -219,18 +272,26 @@ public class Controller {
 		}		
 	};
 	
+	/**
+	 * Listener that creates a new flashcard.
+	 * 
+	 */
 	private static ActionListener CREATE_FLASHCARD_LISTENER = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			String body = CREATE_DECK_GUI.getQuestion() + "\n" + CREATE_DECK_GUI.getAnswer();
 			
 			Flashcard flashcard = new Flashcard(DECK_PATH, body);
-			flashcard.reprintFlashcard();
+			flashcard.printFlashcard();
 			
 			CREATE_DECK_GUI.initializeQuestionTextField();
 			CREATE_DECK_GUI.initializeAnswerArea();
 		}
 	};
 	
+	/**
+	 * Listener that exits from the application.
+	 * 
+	 */
 	private static ActionListener END_APP_LISTENER = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			System.exit(0);
@@ -238,28 +299,6 @@ public class Controller {
 	};
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

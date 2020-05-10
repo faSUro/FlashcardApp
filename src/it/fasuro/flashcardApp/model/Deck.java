@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.TreeMap;
 
 import it.fasuro.flashcardApp.utilities.IOHandler;
+import it.fasuro.flashcardApp.utilities.OSPathMaker;
 import it.fasuro.flashcardApp.view.ErrorDisplayer;
 
 /**
@@ -48,7 +49,7 @@ public class Deck {
 		
 		for (String fileName : new File(deckPath).list()) {	
 			if (fileName.endsWith(".txt")) {
-				Flashcard flashcard = new Flashcard(deckPath, fileName, IOHandler.getFlashcardDocument(deckPath + "/" + fileName));
+				Flashcard flashcard = new Flashcard(deckPath, fileName, IOHandler.getFlashcardDocument(deckPath + OSPathMaker.getSeparator() + fileName));
 				buffDeck.put(flashcard.getQuestion(), flashcard);
 			}
 		}

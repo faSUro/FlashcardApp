@@ -58,7 +58,7 @@ public class Flashcard {
 	/**
 	 * Creates a completely new flashcard (the file doesn't exists yet)
 	 * with a random file name relying on the deck path and the body 
-	 * (question + answer) and using the today date.
+	 * (question + answer) and using the current date.
 	 * @param deckPath
 	 * @param body
 	 * 
@@ -138,15 +138,15 @@ public class Flashcard {
 		}
 		
 		dateToRepeat = c.getTime();
-		reprintFlashcard();
+		printFlashcard();
 	}
 	
 	/**
 	 * Invokes the setFlashcardDocument method to
-	 * save the date changes.
+	 * save the date changes or the brand new flashcard.
 	 * 
 	 */
-	public void reprintFlashcard() {
+	public void printFlashcard() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		String buffBody = "";
 		

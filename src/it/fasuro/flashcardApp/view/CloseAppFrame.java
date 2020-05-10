@@ -31,7 +31,7 @@ public class CloseAppFrame extends JFrame {
 		JLabel closeLabel = new JLabel();
 		closeLabel.setFont(new Font("Dialog", Font.BOLD, 18));
 		switch (option) {
-		case CREATE_DECK:
+		case CREATE_FLASHCARDS:
 			closeLabel.setText("     Your deck has been created, relaunch the app to study it now!");
 			break;
 		case STUDY_DECK:
