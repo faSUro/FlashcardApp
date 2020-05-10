@@ -11,6 +11,7 @@ import javax.swing.JTextArea;
 /**
  * Contains the answer to the current question, only 
  * visible after clicking the "show answer" button.
+ * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
  *
  */
 @SuppressWarnings("serial")

@@ -15,15 +15,23 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+/**
+ * Frame that allows to create new flashcards.
+ * Contains a text field to insert the question, a text area for
+ * the answer and two buttons: one to create the flashcard and one
+ * to terminate the creation.
+ * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
+ * 
+ */
 @SuppressWarnings("serial")
-public class CreateDeckFrame extends JFrame {
+public class CreateFlashcardsFrame extends JFrame {
 	
 	private JTextField questionTextField;
 	private JTextArea answerArea;
 	private JButton createFlashcardButton;
 	private JButton endButton;
 
-	public CreateDeckFrame() {
+	public CreateFlashcardsFrame() {
 		setTitle("FlashcardApp");
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize(screenSize);
@@ -35,6 +43,7 @@ public class CreateDeckFrame extends JFrame {
 		
 		mainPanel.setLayout(new BorderLayout());
 		
+		//panel with an "Insert question" label and the text field for the question.
 		JPanel questionPanel = new JPanel();
 		JLabel insertQuestionLabel = new JLabel("Insert question: ");
 		insertQuestionLabel.setFont(new Font("Dialog", Font.BOLD, 18));
@@ -42,6 +51,7 @@ public class CreateDeckFrame extends JFrame {
 		questionTextField.setFont(new Font("Dialog", Font.PLAIN, 18));
 		questionPanel.add(insertQuestionLabel); questionPanel.add(questionTextField);
 		
+		//panel with an "Insert answer" label and a scrollable text area for the answer.
 		JPanel answerPanel = new JPanel();
 		JLabel insertAnswerLabel = new JLabel("Insert answer: ");
 		insertAnswerLabel.setFont(new Font("Dialog", Font.BOLD, 18));
@@ -52,6 +62,7 @@ public class CreateDeckFrame extends JFrame {
 		JScrollPane answerScrollPane = new JScrollPane(answerArea);
 		answerPanel.add(insertAnswerLabel); answerPanel.add(answerScrollPane);
 		
+		//panel with a "create flashcard" button and an "end" button
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new GridLayout(1, 2));
 		JPanel createFlashcardPanel = new JPanel();

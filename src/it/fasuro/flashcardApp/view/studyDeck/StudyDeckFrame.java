@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 /**
  * The main frame that allows to slide the deck
  * question by question with the relative answer.
+ * Nicolò Fasulo <fasulo.nicol@gmail.com>
  *
  */
 @SuppressWarnings("serial")

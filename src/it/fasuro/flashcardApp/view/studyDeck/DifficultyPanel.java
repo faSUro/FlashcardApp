@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 /**
  * Contains the three buttons that allow to choose
  * the difficulty of the current question.
+ * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
  *
  */
 @SuppressWarnings("serial")

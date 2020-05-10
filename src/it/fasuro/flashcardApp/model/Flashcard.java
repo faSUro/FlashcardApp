@@ -11,6 +11,12 @@ import java.util.Date;
 import it.fasuro.flashcardApp.Difficulty;
 import it.fasuro.flashcardApp.IOHandler;
 
+/**
+ * Class that contains all of the flashcard data.
+ * It allows to create flashcards and to modify them.
+ * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
+ *
+ */
 public class Flashcard {
 	
 	private String filePath;
@@ -100,7 +106,8 @@ public class Flashcard {
 	/**
 	 * Returns a yyyy/MM/dd format Date based on a String
 	 * with the same format.
-	 * @param date
+	 * @param date String
+	 * @return date Date
 	 */
 	public Date generateDate(String date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");

@@ -7,6 +7,13 @@ import java.util.TreeMap;
 import it.fasuro.flashcardApp.IOHandler;
 import it.fasuro.flashcardApp.view.ErrorDisplayer;
 
+/**
+ * Allows to generate the complete deck starting from
+ * a folder and to select the flashcards to study 
+ * today only.
+ * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
+ *
+ */
 public class Deck {
 	
 	private TreeMap<String, Flashcard> fullDeck = new TreeMap<String, Flashcard>();
@@ -34,6 +41,7 @@ public class Deck {
 	/**
 	 * Generates and returns the TreeMap containing all the flashcard
 	 * inside the designed path.
+	 * @return fullDeck
 	 */
 	public TreeMap<String, Flashcard> generateFullDeck() {
 		TreeMap<String, Flashcard> buffDeck = new TreeMap<String, Flashcard>();
@@ -62,6 +70,7 @@ public class Deck {
 	 * answers to study today, starting from the full deck previously
 	 * generated.
 	 * @param fullDeck
+	 * @return deckToStudy
 	 */
 	public TreeMap<String, String> generateDeckToStudy(TreeMap<String, Flashcard> fullDeck) {
 		TreeMap<String, String> buffDeck = new TreeMap<String, String>();

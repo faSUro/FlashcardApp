@@ -15,7 +15,7 @@ import it.fasuro.flashcardApp.view.StartMenuFrame;
  * you should exercise, basing on the difficulty of the
  * questions.
  * @version 1.2
- * @author Nicolò Fasulo
+ * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
  * 
  */
 
@@ -27,13 +27,21 @@ public class Launcher {
 	 * the Controller class.
 	 * 
 	 */
-	public static void main(String args[]) {		
+	public static void main(String args[]) {	
+		//block to set GTKLook and feel
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 				| UnsupportedLookAndFeelException e1) {
 			e1.printStackTrace();
 		}
+		
+		/*
+		 * The next lines create the menu frame and add its action listeners:
+		 * one for the creation of new flashcards and one to select a 
+		 * deck to study.
+		 * 
+		 */
 		
 		StartMenuFrame startMenu = new StartMenuFrame();
 		

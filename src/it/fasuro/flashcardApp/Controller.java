@@ -13,7 +13,7 @@ import it.fasuro.flashcardApp.model.Flashcard;
 import it.fasuro.flashcardApp.view.BrowseFolderFrame;
 import it.fasuro.flashcardApp.view.CloseAppFrame;
 import it.fasuro.flashcardApp.view.ErrorDisplayer;
-import it.fasuro.flashcardApp.view.createDeck.CreateDeckFrame;
+import it.fasuro.flashcardApp.view.createDeck.CreateFlashcardsFrame;
 import it.fasuro.flashcardApp.view.studyDeck.StudyDeckFrame;
 
 /**
@@ -23,7 +23,7 @@ import it.fasuro.flashcardApp.view.studyDeck.StudyDeckFrame;
  */
 public class Controller {
 	
-	private static CreateDeckFrame CREATE_DECK_GUI;
+	private static CreateFlashcardsFrame CREATE_DECK_GUI;
 	private static StudyDeckFrame STUDY_DECK_GUI;
 	private static Deck DECK_MODEL;
 	
@@ -89,7 +89,7 @@ public class Controller {
 	}
 	
 	public void createDeck() {
-		CREATE_DECK_GUI = new CreateDeckFrame();
+		CREATE_DECK_GUI = new CreateFlashcardsFrame();
 		
 		CREATE_DECK_GUI.getCreateFlashcardButton().addActionListener(CREATE_FLASHCARD_LISTENER);
 		CREATE_DECK_GUI.getEndButton().addActionListener(END_APP_LISTENER);
