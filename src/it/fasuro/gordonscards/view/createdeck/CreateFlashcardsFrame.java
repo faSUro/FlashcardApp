@@ -15,7 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import it.fasuro.gordonscards.utilities.PathHandler;
+import it.fasuro.gordonscards.utilities.PathAndOSHandler;
 
 /**
  * Frame that allows to create new flashcards.
@@ -34,7 +34,7 @@ public class CreateFlashcardsFrame extends JFrame {
 	private JButton endButton;
 
 	public CreateFlashcardsFrame() {
-		setTitle("FlashcardApp");
+		setTitle("Gordon's Card");
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize(screenSize);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -56,7 +56,7 @@ public class CreateFlashcardsFrame extends JFrame {
 		//sets different scales depending on the OS
 				int heightScale = 27;
 				int widthScale = 18;
-				if (PathHandler.isWindows()) {
+				if (PathAndOSHandler.isWindows()) {
 					heightScale = 30;
 					widthScale = 15;
 				}

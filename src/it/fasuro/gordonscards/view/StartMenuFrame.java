@@ -19,7 +19,7 @@ public class StartMenuFrame extends JFrame {
 	private JButton studyDeckButton; 
 	
 	public StartMenuFrame() {
-		setTitle("FlashcardApp");
+		setTitle("Gordon's Card");
 		setSize(WIDTH, HEIGHT);
 		setResizable(false);
 		

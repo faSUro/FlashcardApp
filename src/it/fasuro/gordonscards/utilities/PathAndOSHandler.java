@@ -8,7 +8,7 @@ import java.io.File;
  * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
  *
  */
-public class PathHandler {
+public class PathAndOSHandler {
 	
 	private static String OS = System.getProperty("os.name").toLowerCase();
 	

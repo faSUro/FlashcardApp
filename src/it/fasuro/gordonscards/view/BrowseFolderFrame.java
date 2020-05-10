@@ -22,7 +22,7 @@ public class BrowseFolderFrame extends JFrame {
 	private JButton okButton; 
 	
 	public BrowseFolderFrame() {
-		setTitle("FlashcardApp");
+		setTitle("Gordon's Card");
 		this.setSize(WIDTH, HEIGHT);
 		
 		JPanel mainPanel = new JPanel();

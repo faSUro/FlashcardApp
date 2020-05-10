@@ -22,7 +22,7 @@ public class StudyDeckFrame extends JFrame {
 	private DifficultyPanel difficultyPanel;
 	
 	public StudyDeckFrame() {
-		setTitle("FlashcardApp");
+		setTitle("Gordon's Card");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		mainPanel = new JPanel();

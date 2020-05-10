@@ -18,7 +18,7 @@ public class CloseAppFrame extends JFrame {
 	private final static int HEIGHT = 200;
 	
 	public CloseAppFrame(StartMenuOptions option) {
-		setTitle("FlashcardApp");
+		setTitle("Gordon's Card");
 		setSize(WIDTH, HEIGHT);
 		
 		JPanel mainPanel = new JPanel();

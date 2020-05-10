@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import it.fasuro.gordonscards.utilities.PathHandler;
+import it.fasuro.gordonscards.utilities.PathAndOSHandler;
 
 /**
  * Contains the answer to the current question, only 
@@ -27,7 +27,7 @@ public class AnswerPanel extends JPanel {
 		//sets different scales depending on the OS
 		int heightScale = 26;
 		int widthScale = 20;
-		if (PathHandler.isWindows()) {
+		if (PathAndOSHandler.isWindows()) {
 			heightScale = 29;
 			widthScale = 16;
 		}

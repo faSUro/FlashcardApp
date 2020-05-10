@@ -10,7 +10,7 @@ import javax.swing.JFileChooser;
 
 import it.fasuro.gordonscards.model.Deck;
 import it.fasuro.gordonscards.model.Flashcard;
-import it.fasuro.gordonscards.utilities.PathHandler;
+import it.fasuro.gordonscards.utilities.PathAndOSHandler;
 import it.fasuro.gordonscards.view.BrowseFolderFrame;
 import it.fasuro.gordonscards.view.CloseAppFrame;
 import it.fasuro.gordonscards.view.ErrorDisplayer;
@@ -80,7 +80,7 @@ public class Controller {
 				
 				try {
 					File deck = new File(DECK_PATH);
-					if (!PathHandler.isValidPath(deck)) {	//checks if the chosen path is valid
+					if (!PathAndOSHandler.isValidPath(deck)) {	//checks if the chosen path is valid
 						throw new IllegalArgumentException();
 					}
 				} catch (IllegalArgumentException ex) {
