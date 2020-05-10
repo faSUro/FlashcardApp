@@ -14,7 +14,7 @@ import it.fasuro.gordonscards.view.StartMenuFrame;
  * allows to write questions and answers and to decide how often
  * you should exercise, basing on the difficulty of the
  * questions.
- * @version 1.2
+ * @version 1.3
  * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
  * 
  */

@@ -6,7 +6,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,6 +38,12 @@ public class CreateFlashcardsFrame extends JFrame {
 
 	public CreateFlashcardsFrame() {
 		setTitle("Gordon's Card");
+		try {
+			String iconPath = "res" + PathAndOSHandler.getSeparator() + "icon.png"; //sets frame icon
+			setIconImage(ImageIO.read(new File(iconPath)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize(screenSize);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);

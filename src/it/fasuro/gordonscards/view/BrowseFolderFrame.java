@@ -4,12 +4,17 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import it.fasuro.gordonscards.utilities.PathAndOSHandler;
 
 @SuppressWarnings("serial")
 public class BrowseFolderFrame extends JFrame {
@@ -23,6 +28,12 @@ public class BrowseFolderFrame extends JFrame {
 	
 	public BrowseFolderFrame() {
 		setTitle("Gordon's Card");
+		try {
+			String iconPath = "res" + PathAndOSHandler.getSeparator() + "icon.png"; //sets frame icon
+			setIconImage(ImageIO.read(new File(iconPath)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.setSize(WIDTH, HEIGHT);
 		
 		JPanel mainPanel = new JPanel();

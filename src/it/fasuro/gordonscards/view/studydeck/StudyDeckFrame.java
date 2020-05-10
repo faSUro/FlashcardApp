@@ -2,10 +2,15 @@ package it.fasuro.gordonscards.view.studydeck;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import it.fasuro.gordonscards.utilities.PathAndOSHandler;
 
 /**
  * The main frame that allows to slide the deck
@@ -23,6 +28,12 @@ public class StudyDeckFrame extends JFrame {
 	
 	public StudyDeckFrame() {
 		setTitle("Gordon's Card");
+		try {
+			String iconPath = "res" + PathAndOSHandler.getSeparator() + "icon.png"; //sets frame icon
+			setIconImage(ImageIO.read(new File(iconPath)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		mainPanel = new JPanel();

@@ -3,10 +3,15 @@ package it.fasuro.gordonscards.view;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Font;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import it.fasuro.gordonscards.utilities.PathAndOSHandler;
 
 @SuppressWarnings("serial")
 public class ErrorDisplayer extends JFrame {
@@ -16,6 +21,12 @@ public class ErrorDisplayer extends JFrame {
 	
 	public ErrorDisplayer(String error) {
 		setTitle("Something went wrong...");
+		try {
+			String iconPath = "res" + PathAndOSHandler.getSeparator() + "icon.png"; //sets frame icon
+			setIconImage(ImageIO.read(new File(iconPath)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		setSize(WIDTH, HEIGHT);
 		setResizable(false);
 		

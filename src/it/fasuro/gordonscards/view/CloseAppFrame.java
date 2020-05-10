@@ -4,12 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import it.fasuro.gordonscards.StartMenuOptions;
+import it.fasuro.gordonscards.utilities.PathAndOSHandler;
 
 @SuppressWarnings("serial")
 public class CloseAppFrame extends JFrame {
@@ -19,6 +23,12 @@ public class CloseAppFrame extends JFrame {
 	
 	public CloseAppFrame(StartMenuOptions option) {
 		setTitle("Gordon's Card");
+		try {
+			String iconPath = "res" + PathAndOSHandler.getSeparator() + "icon.png"; //sets frame icon
+			setIconImage(ImageIO.read(new File(iconPath)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		setSize(WIDTH, HEIGHT);
 		
 		JPanel mainPanel = new JPanel();
