@@ -30,10 +30,6 @@ public class QuestionPanel extends JPanel {
 		add(showAnswerButton);
 	}
 
-	public JLabel getQuestionLabel() {
-		return questionLabel;
-	}
-
 	public void setQuestion(String question) {
 		questionLabel.setText(question);
 		repaint();
@@ -41,6 +37,10 @@ public class QuestionPanel extends JPanel {
 	
 	public JButton getShowAnswerButton() {
 		return showAnswerButton;
+	}
+	
+	public void setShowAnswerButtonText() {
+		showAnswerButton.setText("  Show answer  ");
 	}
 
 }

@@ -10,6 +10,7 @@ import javax.swing.JFileChooser;
 
 import it.fasuro.flashcardApp.model.Deck;
 import it.fasuro.flashcardApp.model.Flashcard;
+import it.fasuro.flashcardApp.utilities.PathHandler;
 import it.fasuro.flashcardApp.view.BrowseFolderFrame;
 import it.fasuro.flashcardApp.view.CloseAppFrame;
 import it.fasuro.flashcardApp.view.ErrorDisplayer;
@@ -79,11 +80,11 @@ public class Controller {
 				
 				try {
 					File deck = new File(DECK_PATH);
-					if (!isValidPath(deck)) {	//checks if the path chosen is valid
+					if (!PathHandler.isValidPath(deck)) {	//checks if the chosen path is valid
 						throw new IllegalArgumentException();
 					}
 				} catch (IllegalArgumentException ex) {
-					new ErrorDisplayer("               You've entered an invalid path!");
+					new ErrorDisplayer("                   You've entered an invalid path!");
 					return;
 				}
 				
@@ -129,25 +130,7 @@ public class Controller {
 		KEY_SET = new ArrayList<String>(DECK_TO_STUDY.keySet());
 		TOTAL_QUESTIONS = KEY_SET.size();
 		
-		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().addActionListener(FIRST_QUESTION_LISTENER); //adds the listener for the first click to start studying
-	}
-	
-	/**
-	 * Check if a File is a valid folder path: returns true
-	 * if it is valid, false otherwise.
-	 * @param path
-	 * 
-	 */
-	private boolean isValidPath(File path) {
-		if (!path.isDirectory()) {
-			return false;
-		}
-		
-		if(path.exists()) {
-			return true;
-		} else {
-			return false;
-		}		
+		STUDY_DECK_GUI.getShowAnswerButton().addActionListener(FIRST_QUESTION_LISTENER); //adds the listener for the first click to start studying
 	}
 
 	/**
@@ -155,10 +138,10 @@ public class Controller {
 	 * 
 	 */
 	private static void setShowAnswerListener() {
-		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().removeActionListener(FIRST_QUESTION_LISTENER);
+		STUDY_DECK_GUI.getShowAnswerButton().removeActionListener(FIRST_QUESTION_LISTENER);
 		
-		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().removeActionListener(SHOW_ANSWER_LISTENER);
-		STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().addActionListener(SHOW_ANSWER_LISTENER);
+		STUDY_DECK_GUI.getShowAnswerButton().removeActionListener(SHOW_ANSWER_LISTENER);
+		STUDY_DECK_GUI.getShowAnswerButton().addActionListener(SHOW_ANSWER_LISTENER);
 	}
 
 	/**
@@ -166,14 +149,14 @@ public class Controller {
 	 * 
 	 */
 	private static void setNextQuestionListener() {
-		STUDY_DECK_GUI.getDifficultyPanel().getEasyButton().removeActionListener(NEXT_QUESTION_LISTENER_EASY);		
-		STUDY_DECK_GUI.getDifficultyPanel().getEasyButton().addActionListener(NEXT_QUESTION_LISTENER_EASY);		
+		STUDY_DECK_GUI.getEasyButton().removeActionListener(NEXT_QUESTION_LISTENER_EASY);		
+		STUDY_DECK_GUI.getEasyButton().addActionListener(NEXT_QUESTION_LISTENER_EASY);		
 		
-		STUDY_DECK_GUI.getDifficultyPanel().getMediumButton().removeActionListener(NEXT_QUESTION_LISTENER_MEDIUM);		
-		STUDY_DECK_GUI.getDifficultyPanel().getMediumButton().addActionListener(NEXT_QUESTION_LISTENER_MEDIUM);		
+		STUDY_DECK_GUI.getMediumButton().removeActionListener(NEXT_QUESTION_LISTENER_MEDIUM);		
+		STUDY_DECK_GUI.getMediumButton().addActionListener(NEXT_QUESTION_LISTENER_MEDIUM);		
 		
-		STUDY_DECK_GUI.getDifficultyPanel().getHardButton().removeActionListener(NEXT_QUESTION_LISTENER_HARD);		
-		STUDY_DECK_GUI.getDifficultyPanel().getHardButton().addActionListener(NEXT_QUESTION_LISTENER_HARD);		
+		STUDY_DECK_GUI.getHardButton().removeActionListener(NEXT_QUESTION_LISTENER_HARD);		
+		STUDY_DECK_GUI.getHardButton().addActionListener(NEXT_QUESTION_LISTENER_HARD);		
 	}	
 	
 	/**
@@ -186,8 +169,8 @@ public class Controller {
 			if (TOTAL_QUESTIONS == 0) {
 				new CloseAppFrame(CHOSEN_OPTION);
 			} else {
-				STUDY_DECK_GUI.getQuestionPanel().getQuestionLabel().setText(KEY_SET.get(COUNTER));
-				STUDY_DECK_GUI.getQuestionPanel().getShowAnswerButton().setText("  Show answer  ");
+				STUDY_DECK_GUI.setQuestion(KEY_SET.get(COUNTER));
+				STUDY_DECK_GUI.resetShowAnswerButtonText();
 			
 				setShowAnswerListener();
 			}
@@ -201,7 +184,7 @@ public class Controller {
 	 */
 	private static ActionListener SHOW_ANSWER_LISTENER = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			STUDY_DECK_GUI.getAnswerPanel().setAnswer(DECK_TO_STUDY.get(KEY_SET.get(COUNTER)));
+			STUDY_DECK_GUI.setAnswer(DECK_TO_STUDY.get(KEY_SET.get(COUNTER)));
 			
 			setNextQuestionListener();	
 		}		
@@ -218,8 +201,8 @@ public class Controller {
 			
 			COUNTER++;
 			if (COUNTER < TOTAL_QUESTIONS) {
-				STUDY_DECK_GUI.getQuestionPanel().setQuestion(KEY_SET.get(COUNTER));
-				STUDY_DECK_GUI.getAnswerPanel().setAnswer("");
+				STUDY_DECK_GUI.setQuestion(KEY_SET.get(COUNTER));
+				STUDY_DECK_GUI.setAnswer("");
 			
 				setShowAnswerListener();	
 			} else {
@@ -239,8 +222,8 @@ public class Controller {
 			
 			COUNTER++;
 			if (COUNTER < TOTAL_QUESTIONS) {
-				STUDY_DECK_GUI.getQuestionPanel().setQuestion(KEY_SET.get(COUNTER));
-				STUDY_DECK_GUI.getAnswerPanel().setAnswer("");
+				STUDY_DECK_GUI.setQuestion(KEY_SET.get(COUNTER));
+				STUDY_DECK_GUI.setAnswer("");
 			
 				setShowAnswerListener();	
 			} else {
@@ -262,8 +245,8 @@ public class Controller {
 			
 			COUNTER++;
 			if (COUNTER < TOTAL_QUESTIONS) {
-				STUDY_DECK_GUI.getQuestionPanel().setQuestion(KEY_SET.get(COUNTER));
-				STUDY_DECK_GUI.getAnswerPanel().setAnswer("");
+				STUDY_DECK_GUI.setQuestion(KEY_SET.get(COUNTER));
+				STUDY_DECK_GUI.setAnswer("");
 			
 				setShowAnswerListener();	
 			} else {

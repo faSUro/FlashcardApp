@@ -2,6 +2,8 @@ package it.fasuro.flashcardApp.view.studyDeck;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -47,16 +49,32 @@ public class StudyDeckFrame extends JFrame {
 		return mainPanel;
 	}
 	
-	public QuestionPanel getQuestionPanel() {
-		return questionPanel;
+	public JButton getShowAnswerButton() {
+		return questionPanel.getShowAnswerButton();
 	}
 	
-	public AnswerPanel getAnswerPanel() {
-		return answerPanel;
+	public void resetShowAnswerButtonText() {
+		questionPanel.setShowAnswerButtonText();
 	}
 	
-	public DifficultyPanel getDifficultyPanel() {
-		return difficultyPanel;
+	public void setQuestion(String question) {
+		questionPanel.setQuestion(question);
+	}
+	
+	public void setAnswer(String answer) {
+		answerPanel.setAnswer(answer);;
+	}
+	
+	public JButton getEasyButton() {
+		return difficultyPanel.getEasyButton();
+	}
+	
+	public JButton getMediumButton() {
+		return difficultyPanel.getMediumButton();
+	}
+
+	public JButton getHardButton() {
+		return difficultyPanel.getHardButton();
 	}
 	
 }
