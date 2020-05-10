@@ -33,10 +33,6 @@ public class AnswerPanel extends JPanel {
 		answerArea.setText(answer);
 	}
 
-	public JTextArea getAnswerArea() {
-		return answerArea;
-	}
-
 	public void setAnswer(String answer) {
 		answerArea.setText(answer);
 	}

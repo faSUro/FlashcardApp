@@ -54,7 +54,7 @@ public class StudyDeckFrame extends JFrame {
 	}
 	
 	public void resetShowAnswerButtonText() {
-		questionPanel.setShowAnswerButtonText();
+		questionPanel.resetShowAnswerButtonText();
 	}
 	
 	public void setQuestion(String question) {

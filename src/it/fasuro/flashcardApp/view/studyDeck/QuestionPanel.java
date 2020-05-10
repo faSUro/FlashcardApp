@@ -39,7 +39,7 @@ public class QuestionPanel extends JPanel {
 		return showAnswerButton;
 	}
 	
-	public void setShowAnswerButtonText() {
+	public void resetShowAnswerButtonText() {
 		showAnswerButton.setText("  Show answer  ");
 	}
 
