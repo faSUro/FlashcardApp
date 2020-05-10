@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 /**
  * Contains the current question and the button 
  * that allows to show the answer.
- * Nicolò Fasulo <fasulo.nicol@gmail.com>
+ * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
  *
  */
 @SuppressWarnings("serial")

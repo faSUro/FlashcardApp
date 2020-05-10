@@ -19,6 +19,7 @@ import it.fasuro.flashcardApp.view.studyDeck.StudyDeckFrame;
 /**
  * This class connects the different layers of the program: the model
  * (that contains the flashcards) and the GUI.
+ * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
  *
  */
 public class Controller {
