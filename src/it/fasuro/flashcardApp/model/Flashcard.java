@@ -9,7 +9,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import it.fasuro.flashcardApp.Difficulty;
-import it.fasuro.flashcardApp.IOHandler;
+import it.fasuro.flashcardApp.utilities.IOHandler;
+import it.fasuro.flashcardApp.utilities.OSPathMaker;
 
 /**
  * Class that contains all of the flashcard data.
@@ -31,9 +32,10 @@ public class Flashcard {
 	 * @param deckPath
 	 * @param fileName
 	 * @param flashcardDocument
+	 * 
 	 */
 	public Flashcard(String deckPath, String fileName, String flashcardDocument) {
-		filePath = deckPath + "/" + fileName;
+		filePath = deckPath + OSPathMaker.getSeparator() + fileName;
 		
 		BufferedReader reader = new BufferedReader(new StringReader(flashcardDocument));
 		
@@ -59,10 +61,11 @@ public class Flashcard {
 	 * (question + answer) and using the today date.
 	 * @param deckPath
 	 * @param body
+	 * 
 	 */
 	public Flashcard(String deckPath, String body) {
-		filePath = deckPath + "/" + generateFileName(); //if working on windows: / must be replaced with \\
 		dateToRepeat = new Date();
+		filePath = deckPath + OSPathMaker.getSeparator() + generateFileName(); 
 		
 		BufferedReader reader = new BufferedReader(new StringReader(body));
 		
@@ -82,25 +85,16 @@ public class Flashcard {
 
 	/**
 	 * Generates fileName built from a default string plus
-	 * a random alphanumeric string of 10 characters.
-	 * It does not guarantee that the file name doesn't
-	 * exists already (in that case it would be overwritten).
-	 * Even though the probability is low, it's highly recommended
-	 * to manually change the name after the creation,
+	 * the current date.
 	 * @return fileName
+	 * 
 	 */
-	public String generateFileName() { //to be corrected
-		String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		int count = 10;
+	public String generateFileName() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+		String date = sdf.format(dateToRepeat);
 		
-		StringBuilder builder = new StringBuilder();
-		while(count-- != 0) {
-			int character = (int)(Math.random() * ALPHA_NUMERIC_STRING.length());
-			builder.append(ALPHA_NUMERIC_STRING.charAt(character));
-		}
-		
-		String fileName = "AUTO_GENERATED" + builder.toString() + ".txt";
-		return fileName;
+		String fileName = "AUTO_GENERATED_" + date + ".txt";
+		return fileName; 
 	}
 
 	/**
@@ -108,6 +102,7 @@ public class Flashcard {
 	 * with the same format.
 	 * @param date String
 	 * @return date Date
+	 * 
 	 */
 	public Date generateDate(String date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -127,6 +122,7 @@ public class Flashcard {
 	 * The sum is calculated from today.
 	 * Reprints the flashcard.
 	 * @param difficulty
+	 * 
 	 */
 	public void modifyDate(Difficulty difficulty) {
 		Calendar c = Calendar.getInstance();
@@ -148,6 +144,7 @@ public class Flashcard {
 	/**
 	 * Invokes the setFlashcardDocument method to
 	 * save the date changes.
+	 * 
 	 */
 	public void reprintFlashcard() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");

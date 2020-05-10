@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.TreeMap;
 
-import it.fasuro.flashcardApp.IOHandler;
+import it.fasuro.flashcardApp.utilities.IOHandler;
 import it.fasuro.flashcardApp.view.ErrorDisplayer;
 
 /**

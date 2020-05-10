@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp;
+package it.fasuro.flashcardApp.utilities;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
