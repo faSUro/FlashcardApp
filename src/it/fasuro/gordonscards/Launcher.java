@@ -28,9 +28,9 @@ public class Launcher {
 	 * 
 	 */
 	public static void main(String args[]) {	
-		//block to set GTKLookAndFeel
+		//block to set SystemLookAndFeel
 		try {
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 				| UnsupportedLookAndFeelException e1) {
 			e1.printStackTrace();

@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import it.fasuro.gordonscards.utilities.PathHandler;
+
 /**
  * Frame that allows to create new flashcards.
  * Contains a text field to insert the question, a text area for
@@ -51,11 +53,19 @@ public class CreateFlashcardsFrame extends JFrame {
 		questionTextField.setFont(new Font("Dialog", Font.PLAIN, 18));
 		questionPanel.add(insertQuestionLabel); questionPanel.add(questionTextField);
 		
+		//sets different scales depending on the OS
+				int heightScale = 27;
+				int widthScale = 18;
+				if (PathHandler.isWindows()) {
+					heightScale = 30;
+					widthScale = 15;
+				}
+		
 		//panel with an "Insert answer" label and a scrollable text area for the answer.
 		JPanel answerPanel = new JPanel();
 		JLabel insertAnswerLabel = new JLabel("Insert answer: ");
 		insertAnswerLabel.setFont(new Font("Dialog", Font.BOLD, 18));
-		answerArea = new JTextArea(screenSize.height/27, screenSize.width/18); //if in Windows: change the 27-18 parameters
+		answerArea = new JTextArea(screenSize.height/heightScale, screenSize.width/widthScale); 
 		answerArea.setLineWrap(true);
 		answerArea.setWrapStyleWord(true);
 		answerArea.setFont(new Font("Dialog", Font.PLAIN, 18));
