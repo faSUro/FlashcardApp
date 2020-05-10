@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp.view.studyDeck;
+package it.fasuro.gordonscards.view.studydeck;
 
 import java.awt.Dimension;
 import java.awt.Font;

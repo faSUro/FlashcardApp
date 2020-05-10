@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp.view;
+package it.fasuro.gordonscards.view;
 
 import java.awt.Color;
 import java.awt.Container;

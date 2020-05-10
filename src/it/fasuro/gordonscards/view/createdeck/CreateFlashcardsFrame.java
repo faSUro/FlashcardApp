@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp.view.createDeck;
+package it.fasuro.gordonscards.view.createdeck;
 
 import java.awt.BorderLayout;
 import java.awt.Container;

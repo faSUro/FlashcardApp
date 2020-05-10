@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp.utilities;
+package it.fasuro.gordonscards.utilities;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

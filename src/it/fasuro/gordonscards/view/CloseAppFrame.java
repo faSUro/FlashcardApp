@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp.view;
+package it.fasuro.gordonscards.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import it.fasuro.flashcardApp.StartMenuOptions;
+import it.fasuro.gordonscards.StartMenuOptions;
 
 @SuppressWarnings("serial")
 public class CloseAppFrame extends JFrame {

@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp.model;
+package it.fasuro.gordonscards.model;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,9 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import it.fasuro.flashcardApp.Difficulty;
-import it.fasuro.flashcardApp.utilities.IOHandler;
-import it.fasuro.flashcardApp.utilities.PathHandler;
+import it.fasuro.gordonscards.Difficulty;
+import it.fasuro.gordonscards.utilities.IOHandler;
+import it.fasuro.gordonscards.utilities.PathHandler;
 
 /**
  * Class that contains all of the flashcard data.

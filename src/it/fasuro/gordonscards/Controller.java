@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp;
+package it.fasuro.gordonscards;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,14 +8,14 @@ import java.util.TreeMap;
 
 import javax.swing.JFileChooser;
 
-import it.fasuro.flashcardApp.model.Deck;
-import it.fasuro.flashcardApp.model.Flashcard;
-import it.fasuro.flashcardApp.utilities.PathHandler;
-import it.fasuro.flashcardApp.view.BrowseFolderFrame;
-import it.fasuro.flashcardApp.view.CloseAppFrame;
-import it.fasuro.flashcardApp.view.ErrorDisplayer;
-import it.fasuro.flashcardApp.view.createDeck.CreateFlashcardsFrame;
-import it.fasuro.flashcardApp.view.studyDeck.StudyDeckFrame;
+import it.fasuro.gordonscards.model.Deck;
+import it.fasuro.gordonscards.model.Flashcard;
+import it.fasuro.gordonscards.utilities.PathHandler;
+import it.fasuro.gordonscards.view.BrowseFolderFrame;
+import it.fasuro.gordonscards.view.CloseAppFrame;
+import it.fasuro.gordonscards.view.ErrorDisplayer;
+import it.fasuro.gordonscards.view.createdeck.CreateFlashcardsFrame;
+import it.fasuro.gordonscards.view.studydeck.StudyDeckFrame;
 
 /**
  * This class connects the different layers of the program: the model

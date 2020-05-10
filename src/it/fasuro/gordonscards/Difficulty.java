@@ -1,4 +1,4 @@
-package it.fasuro.flashcardApp;
+package it.fasuro.gordonscards;
 
 /**
  * Enumeration to decide whether the user found the

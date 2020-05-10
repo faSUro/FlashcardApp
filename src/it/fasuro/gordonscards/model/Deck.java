@@ -1,12 +1,12 @@
-package it.fasuro.flashcardApp.model;
+package it.fasuro.gordonscards.model;
 
 import java.io.File;
 import java.util.Date;
 import java.util.TreeMap;
 
-import it.fasuro.flashcardApp.utilities.IOHandler;
-import it.fasuro.flashcardApp.utilities.PathHandler;
-import it.fasuro.flashcardApp.view.ErrorDisplayer;
+import it.fasuro.gordonscards.utilities.IOHandler;
+import it.fasuro.gordonscards.utilities.PathHandler;
+import it.fasuro.gordonscards.view.ErrorDisplayer;
 
 /**
  * Allows to generate the complete deck starting from
