@@ -41,26 +41,21 @@ public class BrowseFolderFrame extends JFrame {
 		contentPane.add(mainPanel);
 		
 		mainPanel.setLayout(new GridLayout(5, 1));
-		mainPanel.setBackground(Color.WHITE);
 		
 		JPanel emptyPanel = new JPanel();
-		emptyPanel.setBackground(Color.WHITE);
 		
 		JPanel requestPanel = new JPanel();
-		requestPanel.setBackground(Color.WHITE);
 		JLabel requestLabel = new JLabel("Insert the path of the deck folder: ");
 		requestLabel.setFont(new Font("Dialog", Font.BOLD, 15));
 		requestPanel.add(requestLabel);
 		
 		JPanel pathPanel = new JPanel();
-		pathPanel.setBackground(Color.WHITE);
 		pathTextField = new JTextField(25);
 		browseButton = new JButton(" Browse ");
 		browseButton.setFont(new Font("Dialog", Font.BOLD, 15));
 		pathPanel.add(pathTextField); pathPanel.add(browseButton);
 		
 		JPanel okPanel = new JPanel();
-		okPanel.setBackground(Color.WHITE);
 		okButton = new JButton("  Ok  ");
 		okButton.setFont(new Font("Dialog", Font.BOLD, 15));
 		okPanel.add(okButton);
