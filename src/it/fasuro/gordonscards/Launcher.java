@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import it.fasuro.gordonscards.view.MainMenuFrame;
 import it.fasuro.gordonscards.view.StartMenuFrame;
+import it.fasuro.gordonscards.view.mainmenu.MainMenuFrame;
 
 /**
  * This class allows to start the entire program.
@@ -36,11 +36,15 @@ public class Launcher {
 				| UnsupportedLookAndFeelException e1) {
 			e1.printStackTrace();
 		}
+
+		String[] deckList = {"Deck 1", "Deck 2", "Deck 3"};
+		String[] flashcardList1 = {"AAAA", "BBBB", "CCCC"};
+		String[] flashcardList2 = {"DDDD", "EEEE", "FFFF"};
 		
-		String[] list1 = {"Deck 1", "Deck 2", "Deck 3"};
-		String[] list2 = {"Domanda 1", "Domanda 2", "Domanda 3"};
+		MainMenuFrame mmf = new MainMenuFrame(deckList);
+		mmf.refreshDeckPanel(flashcardList1);
 		
-		new MainMenuFrame(list1, list2);
+		mmf.refreshDeckPanel(flashcardList2);
 		
 		/*
 		 * The next lines create the menu frame and add its action listeners:
