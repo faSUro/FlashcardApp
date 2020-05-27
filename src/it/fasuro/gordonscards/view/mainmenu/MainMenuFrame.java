@@ -3,6 +3,8 @@ package it.fasuro.gordonscards.view.mainmenu;
 import java.awt.BorderLayout;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,13 +20,13 @@ public class MainMenuFrame extends JFrame {
 	private final static int WIDTH = 700, HEIGHT = 350;
 	
 	private JPanel mainPanel;
-	private JComboBox<String> deckListComboBox;
+	private JComboBox<Object> deckListComboBox;
 	private JButton selectButton;
 	private JButton createNewDeckButton;
 	private JButton importDeckButton;
 	private JPanel deckPanel;
 	
-	public MainMenuFrame(String[] deckList) {
+	public MainMenuFrame(ArrayList<String> s) {
 		setTitle("Gordon's Card");
 		try {
 			String iconPath = "res" + PathHandler.getSeparator() + "icon.png"; //sets frame icon
@@ -44,7 +46,7 @@ public class MainMenuFrame extends JFrame {
 		JLabel selectDeckLabel = new JLabel("Select a deck: ");
 		deckManagerPanel.add(selectDeckLabel);
 		
-		deckListComboBox = new JComboBox<String>(deckList); //JComboBox that shows the list of all decks
+		deckListComboBox = new JComboBox<Object>(s.toArray()); //JComboBox that shows the list of all decks
 		deckManagerPanel.add(deckListComboBox);
 		
 		selectButton = new JButton("Select"); //button to select the list shown in the JComboBox
@@ -63,22 +65,24 @@ public class MainMenuFrame extends JFrame {
 	
 	/**
 	 * Refreshes the panel with the deck options and deck flashcards inside it.
-	 * @param newFlashcardList
+	 * @param arrayList
 	 */
-	public void refreshDeckPanel(String[] newFlashcardList) {
+	public void refreshDeckPanel(ArrayList<String> arrayList) {
 		if (deckPanel != null) { //avoids NullPointerException at first call
 			mainPanel.remove(deckPanel);
 		}
-		deckPanel = new DeckPanel(newFlashcardList);
+		deckPanel = new DeckPanel(arrayList);
 		mainPanel.add(deckPanel, BorderLayout.CENTER);
+		
+		revalidate();
 	}
 	
 	/**
 	 * Refreshes the JComboBox after a deck is added/deleted.
 	 * @param newDeckList
 	 */
-	public void refreshComboBox(String[] newDeckList) {
-		deckListComboBox = new JComboBox<String>(newDeckList);
+	public void refreshComboBox(ArrayList<Object> newDeckList) {
+		deckListComboBox = new JComboBox<Object>(newDeckList.toArray());
 	}
 	
 	public String getSelectedDeck() {

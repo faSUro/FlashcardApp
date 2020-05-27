@@ -49,8 +49,9 @@ public class PathHandler {
 	}
 
 	public static String generateDeckPath(String selectedDeck) {
-		// TODO Auto-generated method stub
-		return null;
+		String s = getSeparator();
+		String deckPath = "res" + s + "decks" + s + selectedDeck;
+		return deckPath;
 	}
 
 }

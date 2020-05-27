@@ -2,6 +2,7 @@ package it.fasuro.gordonscards.view.mainmenu;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -11,14 +12,14 @@ import javax.swing.JPanel;
 public class DeckPanel extends JPanel {
 	
 	private JPanel flashcardsPanel;
-	private JList<String> list;
+	private JList<Object> list;
 	private JButton studyDeckButton;
 	private JButton studyAllDeckButton;
 	private JButton deleteDeckButton;
 	private JButton addFlashcardsButton;
 	private JButton deleteFlashcardButton;
 	
-	public DeckPanel(String[] flashcardList) {
+	public DeckPanel(ArrayList<String> flashcardsList) {
 		setLayout(new GridLayout(1, 2));
 		
 		JPanel deckOptionsPanel = new JPanel();
@@ -56,15 +57,18 @@ public class DeckPanel extends JPanel {
 		deleteFlashcardButton = new JButton("Delete flashcard");
 		flashcardOptionsPanel.add(deleteFlashcardButton);
 		
-		list = new JList<String>(flashcardList);
-		flashcardsPanel.add(list, BorderLayout.CENTER);
+		refreshFlashcardsPanel(flashcardsList);
 	}
 	
-	public void refreshFlashcardsPanel(String[] newFlashcardList) {
-		flashcardsPanel.removeAll();
-		
-		list = new JList<String>(newFlashcardList);
+	public void refreshFlashcardsPanel(ArrayList<String> newFlashcardList) {
+		if (list != null) {
+			flashcardsPanel.remove(list);
+		}
+
+		list = new JList<Object>(newFlashcardList.toArray());
 		flashcardsPanel.add(list, BorderLayout.CENTER);
+
+		revalidate();
 	}
 
 }

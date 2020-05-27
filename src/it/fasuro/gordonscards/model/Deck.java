@@ -106,8 +106,8 @@ public class Deck {
 		this.deckPath = deckPath;
 	}
 
-	public String[] getFlashcardList() {
-		return (String[]) flashcardList.toArray();
+	public ArrayList<String> getFlashcardList() {
+		return flashcardList;
 	}
 
 }

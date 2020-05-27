@@ -116,7 +116,7 @@ public class CreateFlashcardsFrame extends JFrame {
 	}
 
 	public void initializeAnswerArea() {
-		answerArea.setText("");;
+		answerArea.setText("");
 	}
 
 	public JButton getCreateFlashcardButton() {

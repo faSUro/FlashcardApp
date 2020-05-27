@@ -2,6 +2,7 @@ package it.fasuro.gordonscards;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import it.fasuro.gordonscards.model.Deck;
 import it.fasuro.gordonscards.utilities.PathHandler;
@@ -13,8 +14,8 @@ public class ControllerV2 {
 	
 	private Deck selectedDeck;
 	
-	public ControllerV2(String[] deckList) {
-		gui = new MainMenuFrame(deckList);
+	public ControllerV2(ArrayList<String> s) {
+		gui = new MainMenuFrame(s);
 		
 		setPermanentListeners();
 	}
@@ -26,6 +27,7 @@ public class ControllerV2 {
 			public void actionPerformed(ActionEvent e) {
 				selectedDeck = new Deck(PathHandler.generateDeckPath(gui.getSelectedDeck())); //generates deck path starting from its name
 				gui.refreshDeckPanel(selectedDeck.getFlashcardList());
+
 				setTemporaryListeners();
 			}
 			

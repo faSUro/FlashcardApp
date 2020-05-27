@@ -2,6 +2,7 @@ package it.fasuro.gordonscards;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -37,11 +38,13 @@ public class Launcher {
 			e1.printStackTrace();
 		}
 
+		ArrayList<String> s = new ArrayList<String>();
+		s.add("deck1"); s.add("deck2");
 		String[] deckList = {"Deck 1", "Deck 2", "Deck 3"};
 		String[] flashcardList1 = {"AAAA", "BBBB", "CCCC"};
 		String[] flashcardList2 = {"DDDD", "EEEE", "FFFF"};
 		
-		new ControllerV2(deckList);
+		new ControllerV2(s);
 		
 		/*
 		 * The next lines create the menu frame and add its action listeners:
