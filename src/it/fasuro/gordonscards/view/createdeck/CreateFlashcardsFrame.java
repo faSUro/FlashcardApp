@@ -18,7 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import it.fasuro.gordonscards.utilities.PathAndOSHandler;
+import it.fasuro.gordonscards.utilities.OSDistinguisher;
+import it.fasuro.gordonscards.utilities.PathHandler;
 
 /**
  * Frame that allows to create new flashcards.
@@ -39,7 +40,7 @@ public class CreateFlashcardsFrame extends JFrame {
 	public CreateFlashcardsFrame() {
 		setTitle("Gordon's Card");
 		try {
-			String iconPath = "res" + PathAndOSHandler.getSeparator() + "icon.png"; //sets frame icon
+			String iconPath = "res" + PathHandler.getSeparator() + "icon.png"; //sets frame icon
 			setIconImage(ImageIO.read(new File(iconPath)));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -65,7 +66,7 @@ public class CreateFlashcardsFrame extends JFrame {
 		//sets different scales depending on the OS
 				int heightScale = 27;
 				int widthScale = 18;
-				if (PathAndOSHandler.isWindows()) {
+				if (OSDistinguisher.isWindows()) {
 					heightScale = 30;
 					widthScale = 15;
 				}

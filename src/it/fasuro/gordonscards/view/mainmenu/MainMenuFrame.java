@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import it.fasuro.gordonscards.utilities.PathAndOSHandler;
+import it.fasuro.gordonscards.utilities.PathHandler;
 
 @SuppressWarnings("serial")
 public class MainMenuFrame extends JFrame {
@@ -27,7 +27,7 @@ public class MainMenuFrame extends JFrame {
 	public MainMenuFrame(String[] deckList) {
 		setTitle("Gordon's Card");
 		try {
-			String iconPath = "res" + PathAndOSHandler.getSeparator() + "icon.png"; //sets frame icon
+			String iconPath = "res" + PathHandler.getSeparator() + "icon.png"; //sets frame icon
 			setIconImage(ImageIO.read(new File(iconPath)));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -79,6 +79,22 @@ public class MainMenuFrame extends JFrame {
 	 */
 	public void refreshComboBox(String[] newDeckList) {
 		deckListComboBox = new JComboBox<String>(newDeckList);
+	}
+	
+	public String getSelectedDeck() {
+		return (String) deckListComboBox.getSelectedItem();
+	}
+
+	public JButton getSelectButton() {
+		return selectButton;
+	}
+
+	public JButton getCreateNewDeckButton() {
+		return createNewDeckButton;
+	}
+
+	public JButton getImportDeckButton() {
+		return importDeckButton;
 	}
 
 }

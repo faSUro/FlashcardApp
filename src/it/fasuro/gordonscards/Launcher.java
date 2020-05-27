@@ -41,10 +41,7 @@ public class Launcher {
 		String[] flashcardList1 = {"AAAA", "BBBB", "CCCC"};
 		String[] flashcardList2 = {"DDDD", "EEEE", "FFFF"};
 		
-		MainMenuFrame mmf = new MainMenuFrame(deckList);
-		mmf.refreshDeckPanel(flashcardList1);
-		
-		mmf.refreshDeckPanel(flashcardList2);
+		new ControllerV2(deckList);
 		
 		/*
 		 * The next lines create the menu frame and add its action listeners:

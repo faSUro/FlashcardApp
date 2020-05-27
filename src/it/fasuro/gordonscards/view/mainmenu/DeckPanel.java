@@ -10,6 +10,14 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class DeckPanel extends JPanel {
 	
+	private JPanel flashcardsPanel;
+	private JList<String> list;
+	private JButton studyDeckButton;
+	private JButton studyAllDeckButton;
+	private JButton deleteDeckButton;
+	private JButton addFlashcardsButton;
+	private JButton deleteFlashcardButton;
+	
 	public DeckPanel(String[] flashcardList) {
 		setLayout(new GridLayout(1, 2));
 		
@@ -20,35 +28,42 @@ public class DeckPanel extends JPanel {
 		JPanel studyDeckPanel = new JPanel();
 		deckOptionsPanel.add(studyDeckPanel);
 		
-		JButton studyDeckButton = new JButton("Study");
+		studyDeckButton = new JButton("Study");
 		studyDeckPanel.add(studyDeckButton);
 		
 		JPanel studyAllDeckPanel = new JPanel();
 		deckOptionsPanel.add(studyAllDeckPanel);
 		
-		JButton studyAllDeckButton = new JButton("Study all");
+		studyAllDeckButton = new JButton("Study all");
 		studyAllDeckPanel.add(studyAllDeckButton);
 		
 		JPanel deleteDeckPanel = new JPanel();
 		deckOptionsPanel.add(deleteDeckPanel);
 		
-		JButton deleteDeckButton = new JButton("Delete deck");
+		deleteDeckButton = new JButton("Delete deck");
 		deleteDeckPanel.add(deleteDeckButton);
 		
-		JPanel flashcardsPanel = new JPanel();
+		flashcardsPanel = new JPanel();
 		add(flashcardsPanel);
 		flashcardsPanel.setLayout(new BorderLayout());
 		
 		JPanel flashcardOptionsPanel = new JPanel();
 		flashcardsPanel.add(flashcardOptionsPanel, BorderLayout.SOUTH);
 		
-		JButton addFlashcardsButton = new JButton("Add flashcard");
+		addFlashcardsButton = new JButton("Add flashcard");
 		flashcardOptionsPanel.add(addFlashcardsButton);
 		
-		JButton deleteFlashcardButton = new JButton("Delete flashcard");
+		deleteFlashcardButton = new JButton("Delete flashcard");
 		flashcardOptionsPanel.add(deleteFlashcardButton);
 		
-		JList<String> list = new JList<String>(flashcardList);
+		list = new JList<String>(flashcardList);
+		flashcardsPanel.add(list, BorderLayout.CENTER);
+	}
+	
+	public void refreshFlashcardsPanel(String[] newFlashcardList) {
+		flashcardsPanel.removeAll();
+		
+		list = new JList<String>(newFlashcardList);
 		flashcardsPanel.add(list, BorderLayout.CENTER);
 	}
 

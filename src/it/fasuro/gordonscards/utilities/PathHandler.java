@@ -8,9 +8,7 @@ import java.io.File;
  * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
  *
  */
-public class PathAndOSHandler {
-	
-	private static String OS = System.getProperty("os.name").toLowerCase();
+public class PathHandler {
 	
 	/**
 	 * Returns a string containing the separator (for paths),  
@@ -21,42 +19,15 @@ public class PathAndOSHandler {
 	public static String getSeparator() {
 		String separator = "";
 		
-		if (isWindows()) {
+		if (OSDistinguisher.isWindows()) {
 			separator = "\\";
-		} else if (isUnix()) {
+		} else if (OSDistinguisher.isUnix()) {
 			separator = "/";
-		} else if (isMac()) {
+		} else if (OSDistinguisher.isMac()) {
 			separator = ":";
 		} 
 		
 		return separator;
-	}
-	
-	/**
-	 * Returns true if the current OS is Windows.
-	 * @return boolean
-	 * 
-	 */
-	public static boolean isWindows() {
-		return (OS.indexOf("win") >= 0);
-	}
- 
-	/**
-	 * Returns true if the current OS is a Mac OS.
-	 * @return boolean
-	 * 
-	 */
-	public static boolean isMac() {
-		return (OS.indexOf("mac") >= 0);
-	}
- 
-	/**
-	 * Returns true if the current OS is Unix based.
-	 * @return boolean
-	 * 
-	 */
-	public static boolean isUnix() {
-		return (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0 );
 	}
 	
 	/**
@@ -75,6 +46,11 @@ public class PathAndOSHandler {
 		} else {
 			return false;
 		}		
+	}
+
+	public static String generateDeckPath(String selectedDeck) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

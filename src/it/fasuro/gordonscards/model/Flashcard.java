@@ -10,7 +10,7 @@ import java.util.Date;
 
 import it.fasuro.gordonscards.Difficulty;
 import it.fasuro.gordonscards.utilities.IOHandler;
-import it.fasuro.gordonscards.utilities.PathAndOSHandler;
+import it.fasuro.gordonscards.utilities.PathHandler;
 
 /**
  * Class that contains all of the flashcard data.
@@ -35,7 +35,7 @@ public class Flashcard {
 	 * 
 	 */
 	public Flashcard(String deckPath, String fileName, String flashcardDocument) {
-		filePath = deckPath + PathAndOSHandler.getSeparator() + fileName;
+		filePath = deckPath + PathHandler.getSeparator() + fileName;
 		
 		BufferedReader reader = new BufferedReader(new StringReader(flashcardDocument));
 		
@@ -65,7 +65,7 @@ public class Flashcard {
 	 */
 	public Flashcard(String deckPath, String body) {
 		dateToRepeat = new Date();
-		filePath = deckPath + PathAndOSHandler.getSeparator() + generateFileName(); 
+		filePath = deckPath + PathHandler.getSeparator() + generateFileName(); 
 		
 		BufferedReader reader = new BufferedReader(new StringReader(body));
 		

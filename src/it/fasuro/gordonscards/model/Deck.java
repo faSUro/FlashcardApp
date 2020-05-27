@@ -1,11 +1,12 @@
 package it.fasuro.gordonscards.model;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeMap;
 
 import it.fasuro.gordonscards.utilities.IOHandler;
-import it.fasuro.gordonscards.utilities.PathAndOSHandler;
+import it.fasuro.gordonscards.utilities.PathHandler;
 import it.fasuro.gordonscards.view.ErrorDisplayer;
 
 /**
@@ -19,6 +20,7 @@ public class Deck {
 	
 	private TreeMap<String, Flashcard> fullDeck = new TreeMap<String, Flashcard>();
 	private TreeMap<String, String> deckToStudy = new TreeMap<String, String>();
+	private ArrayList<String> flashcardList = new ArrayList<String>();
 	
 	private Date currentDate;
 	
@@ -49,8 +51,9 @@ public class Deck {
 		
 		for (String fileName : new File(deckPath).list()) {	
 			if (fileName.endsWith(".txt")) {
-				Flashcard flashcard = new Flashcard(deckPath, fileName, IOHandler.getFlashcardDocument(deckPath + PathAndOSHandler.getSeparator() + fileName));
+				Flashcard flashcard = new Flashcard(deckPath, fileName, IOHandler.getFlashcardDocument(deckPath + PathHandler.getSeparator() + fileName));
 				buffDeck.put(flashcard.getQuestion(), flashcard);
+				flashcardList.add(flashcard.getQuestion());
 			}
 		}
 		
@@ -101,6 +104,10 @@ public class Deck {
 
 	public void setDeckPath(String deckPath) {
 		this.deckPath = deckPath;
+	}
+
+	public String[] getFlashcardList() {
+		return (String[]) flashcardList.toArray();
 	}
 
 }
