@@ -74,7 +74,7 @@ public class Flashcard {
 			
 			String line;
 			while ((line = reader.readLine()) != null) {
-				answer = answer + line + "\n";
+				answer += line + "\n";
 			}
 			
 			reader.close();
@@ -171,6 +171,11 @@ public class Flashcard {
 
 	public String getAnswer() {
 		return answer;
+	}
+
+	public void resetDate() {
+		dateToRepeat = new Date();
+		printFlashcard();		
 	}
 
 }

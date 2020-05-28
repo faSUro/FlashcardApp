@@ -24,7 +24,7 @@ public class Deck {
 	
 	private Date currentDate;
 	
-	public String deckPath;
+	private String deckPath;
 	
 	/**
 	 * Sets the path of the folder in which are contained the
@@ -108,6 +108,17 @@ public class Deck {
 
 	public ArrayList<String> getFlashcardList() {
 		return flashcardList;
+	}
+	
+	public String getDeckPath() {
+		return deckPath;
+	}
+
+	public void resetFlashcardDate() {
+		for (Flashcard f : fullDeck.values()) {
+			f.resetDate();
+		}
+		
 	}
 
 }

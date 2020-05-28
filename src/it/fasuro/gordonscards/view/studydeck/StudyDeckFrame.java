@@ -53,7 +53,7 @@ public class StudyDeckFrame extends JFrame {
 		mainPanel.add(difficultyPanel, BorderLayout.SOUTH);
 		
 		setVisible(true);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
 	public JPanel getMainPanel() {

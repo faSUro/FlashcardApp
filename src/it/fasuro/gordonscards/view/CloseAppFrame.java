@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -13,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import it.fasuro.gordonscards.StartMenuOptions;
+import it.fasuro.gordonscards.StudyDeckLauncher;
 import it.fasuro.gordonscards.utilities.PathHandler;
 
 @SuppressWarnings("serial")
@@ -21,7 +24,7 @@ public class CloseAppFrame extends JFrame {
 	private final static int WIDTH = 700;
 	private final static int HEIGHT = 200;
 	
-	public CloseAppFrame(StartMenuOptions option) {
+	public CloseAppFrame(JFrame studyDeckFrame, StartMenuOptions option) {
 		setTitle("Gordon's Card");
 		try {
 			String iconPath = "res" + PathHandler.getSeparator() + "icon.png"; //sets frame icon
@@ -36,7 +39,6 @@ public class CloseAppFrame extends JFrame {
 		contentPane.add(mainPanel);
 		
 		mainPanel.setLayout(new BorderLayout());
-		mainPanel.setBackground(Color.WHITE);
 		
 		JLabel closeLabel = new JLabel();
 		closeLabel.setFont(new Font("Dialog", Font.BOLD, 18));
@@ -53,8 +55,26 @@ public class CloseAppFrame extends JFrame {
 	
 		setLocationRelativeTo(null);
 		setVisible(true);
-		
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.addWindowListener(new WindowListener() {
+
+			@Override
+			public void windowOpened(WindowEvent e) {
+			}
+			public void windowClosing(WindowEvent e) {
+				studyDeckFrame.dispose();
+				dispose();
+			}
+			public void windowClosed(WindowEvent e) {
+			}
+			public void windowIconified(WindowEvent e) {
+			}
+			public void windowDeiconified(WindowEvent e) {
+			}
+			public void windowActivated(WindowEvent e) {
+			}
+			public void windowDeactivated(WindowEvent e) {
+			}
+		});
 	}
 
 }

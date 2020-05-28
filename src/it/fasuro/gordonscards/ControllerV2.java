@@ -13,7 +13,7 @@ public class ControllerV2 {
 	private MainMenuFrame gui;
 	private ArrayList<String> deckList;
 	
-	private Deck selectedDeck;
+	private String selectedDeckPath;
 	
 	public ControllerV2(ArrayList<String> s) {
 		deckList = s;
@@ -28,7 +28,8 @@ public class ControllerV2 {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selectedDeck = new Deck(PathHandler.generateDeckPath(gui.getSelectedDeck())); //generates deck path starting from its name
+				selectedDeckPath = PathHandler.generateDeckPath(gui.getSelectedDeck());
+				Deck selectedDeck = new Deck(selectedDeckPath); //generates deck path starting from its name
 				gui.refreshDeckPanel(selectedDeck.getFlashcardList());
 
 				setTemporaryListeners();
@@ -64,7 +65,7 @@ public class ControllerV2 {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				new StudyDeckLauncher(new Deck(selectedDeckPath));	
 				
 			}
 			
@@ -74,8 +75,8 @@ public class ControllerV2 {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				new Deck(selectedDeckPath).resetFlashcardDate(); //per ora così, valutare un metodo refreshDeck che aggiorna
+				new StudyDeckLauncher(new Deck(selectedDeckPath));
 			}
 			
 		});
