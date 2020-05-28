@@ -10,6 +10,8 @@ import it.fasuro.gordonscards.view.mainmenu.MainMenuFrame;
 
 public class MainController {
 	
+	private static MainController mainController;
+	
 	private MainMenuFrame gui;
 	private ArrayList<String> deckList;
 	
@@ -18,6 +20,8 @@ public class MainController {
 	public MainController(ArrayList<String> s) {
 		deckList = s;
 		gui = new MainMenuFrame(deckList);
+		
+		mainController = this;
 		
 		setPermanentListeners();
 	}
@@ -28,8 +32,8 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selectedDeckPath = PathHandler.generateDeckPath(gui.getSelectedDeck());
-				Deck selectedDeck = new Deck(selectedDeckPath); //generates deck path starting from its name
+				selectedDeckPath = PathHandler.generateDeckPath(gui.getSelectedDeck()); //generates deck path starting from its name
+				Deck selectedDeck = new Deck(selectedDeckPath); 
 				gui.refreshDeckPanel(selectedDeck.getFlashcardList());
 
 				setTemporaryListeners();
@@ -59,12 +63,14 @@ public class MainController {
 		
 	}
 
-	private void setTemporaryListeners() {
+	public void setTemporaryListeners() {
 		
 		gui.getStudyDeckButton().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(selectedDeckPath);
+				System.out.println("test");
 				new StudyDeckLauncher(new Deck(selectedDeckPath));	
 				
 			}
@@ -95,7 +101,7 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new CreateFlashcardsLauncher(gui, selectedDeckPath);
+				new CreateFlashcardsLauncher(mainController, selectedDeckPath);
 			}
 			
 		});
@@ -111,6 +117,10 @@ public class MainController {
 		});
 		
 		
+	}
+
+	public MainMenuFrame getGui() {
+		return gui;
 	}
 
 }

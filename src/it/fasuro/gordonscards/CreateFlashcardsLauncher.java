@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import it.fasuro.gordonscards.model.Deck;
 import it.fasuro.gordonscards.model.Flashcard;
 import it.fasuro.gordonscards.view.createdeck.CreateFlashcardsFrame;
-import it.fasuro.gordonscards.view.mainmenu.MainMenuFrame;
 
 /**
  * This class connects the different layers of the program: the model
@@ -16,7 +15,7 @@ import it.fasuro.gordonscards.view.mainmenu.MainMenuFrame;
  */
 public class CreateFlashcardsLauncher {
 	
-	private MainMenuFrame mainMenuGUI;
+	private MainController mainController;
 	private CreateFlashcardsFrame CREATE_DECK_GUI;
 	private String DECK_PATH;
 	
@@ -30,8 +29,8 @@ public class CreateFlashcardsLauncher {
 	 * @param option
 	 * 
 	 */
-	public CreateFlashcardsLauncher(MainMenuFrame mainMenuGUI, String deckPath) {
-		this.mainMenuGUI = mainMenuGUI;
+	public CreateFlashcardsLauncher(MainController mainController, String deckPath) {
+		this.mainController = mainController;
 		DECK_PATH = deckPath;
 		start();
 	}
@@ -69,7 +68,8 @@ public class CreateFlashcardsLauncher {
 	 */
 	private ActionListener END_APP_LISTENER = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			mainMenuGUI.refreshDeckPanel(new Deck(DECK_PATH).getFlashcardList()); //da sostituire come una chiamata diretta a mainmenugui (singleton)
+			mainController.getGui().refreshDeckPanel(new Deck(DECK_PATH).getFlashcardList()); //da sostituire come una chiamata diretta a mainmenugui (singleton)
+			mainController.setTemporaryListeners();
 			CREATE_DECK_GUI.dispose();;
 		}
 	};
