@@ -8,14 +8,14 @@ import it.fasuro.gordonscards.model.Deck;
 import it.fasuro.gordonscards.utilities.PathHandler;
 import it.fasuro.gordonscards.view.mainmenu.MainMenuFrame;
 
-public class ControllerV2 {
+public class MainController {
 	
 	private MainMenuFrame gui;
 	private ArrayList<String> deckList;
 	
 	private String selectedDeckPath;
 	
-	public ControllerV2(ArrayList<String> s) {
+	public MainController(ArrayList<String> s) {
 		deckList = s;
 		gui = new MainMenuFrame(deckList);
 		
@@ -95,8 +95,7 @@ public class ControllerV2 {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				new CreateFlashcardsLauncher(gui, selectedDeckPath);
 			}
 			
 		});

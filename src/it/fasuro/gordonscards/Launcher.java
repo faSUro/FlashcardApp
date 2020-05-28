@@ -44,7 +44,7 @@ public class Launcher {
 		String[] flashcardList1 = {"AAAA", "BBBB", "CCCC"};
 		String[] flashcardList2 = {"DDDD", "EEEE", "FFFF"};
 		
-		new ControllerV2(s);
+		new MainController(s);
 		
 		/*
 		 * The next lines create the menu frame and add its action listeners:
