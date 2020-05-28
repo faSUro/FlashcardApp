@@ -11,16 +11,19 @@ import it.fasuro.gordonscards.view.mainmenu.MainMenuFrame;
 public class ControllerV2 {
 	
 	private MainMenuFrame gui;
+	private ArrayList<String> deckList;
 	
 	private Deck selectedDeck;
 	
 	public ControllerV2(ArrayList<String> s) {
-		gui = new MainMenuFrame(s);
+		deckList = s;
+		gui = new MainMenuFrame(deckList);
 		
 		setPermanentListeners();
 	}
 
 	private void setPermanentListeners() {
+		
 		gui.getSelectButton().addActionListener(new ActionListener() {
 
 			@Override
@@ -56,6 +59,56 @@ public class ControllerV2 {
 	}
 
 	private void setTemporaryListeners() {
+		
+		gui.getStudyDeckButton().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		gui.getStudyAllDeckButton().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		gui.getDeleteDeckButton().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		gui.getAddFlashcardsButton().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		gui.getDeleteFlashcardButton().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 		
 	}

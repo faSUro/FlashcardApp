@@ -24,7 +24,7 @@ public class MainMenuFrame extends JFrame {
 	private JButton selectButton;
 	private JButton createNewDeckButton;
 	private JButton importDeckButton;
-	private JPanel deckPanel;
+	private DeckPanel deckPanel;
 	
 	public MainMenuFrame(ArrayList<String> s) {
 		setTitle("Gordon's Card");
@@ -88,6 +88,10 @@ public class MainMenuFrame extends JFrame {
 	public String getSelectedDeck() {
 		return (String) deckListComboBox.getSelectedItem();
 	}
+	
+	public String getSelectedFlashcard() {
+		return deckPanel.getSelectedFlashcard();
+	}
 
 	public JButton getSelectButton() {
 		return selectButton;
@@ -99,6 +103,26 @@ public class MainMenuFrame extends JFrame {
 
 	public JButton getImportDeckButton() {
 		return importDeckButton;
+	}
+	
+	public JButton getStudyDeckButton() {
+		return deckPanel.getStudyDeckButton();
+	}
+
+	public JButton getStudyAllDeckButton() {
+		return deckPanel.getStudyAllDeckButton();
+	}
+
+	public JButton getDeleteDeckButton() {
+		return deckPanel.getDeleteDeckButton();
+	}
+
+	public JButton getAddFlashcardsButton() {
+		return deckPanel.getAddFlashcardsButton();
+	}
+
+	public JButton getDeleteFlashcardButton() {
+		return deckPanel.getDeleteFlashcardButton();
 	}
 
 }

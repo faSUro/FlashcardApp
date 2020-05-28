@@ -70,5 +70,29 @@ public class DeckPanel extends JPanel {
 
 		revalidate();
 	}
+	
+	public String getSelectedFlashcard() {
+		return (String) list.getSelectedValue();
+	}
+
+	public JButton getStudyDeckButton() {
+		return studyDeckButton;
+	}
+
+	public JButton getStudyAllDeckButton() {
+		return studyAllDeckButton;
+	}
+
+	public JButton getDeleteDeckButton() {
+		return deleteDeckButton;
+	}
+
+	public JButton getAddFlashcardsButton() {
+		return addFlashcardsButton;
+	}
+
+	public JButton getDeleteFlashcardButton() {
+		return deleteFlashcardButton;
+	}
 
 }
