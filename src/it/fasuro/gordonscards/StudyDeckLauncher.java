@@ -19,6 +19,8 @@ import it.fasuro.gordonscards.view.studydeck.StudyDeckFrame;
  */
 public class StudyDeckLauncher {
 	
+	private MainController mainController;
+	
 	private StudyDeckFrame STUDY_DECK_GUI;
 	private Deck DECK_MODEL;
 	
@@ -34,11 +36,15 @@ public class StudyDeckLauncher {
 	 * (with a JFileChooser); then it calls the method that allows to
 	 * create new flashcards/study an existent deck, depending on the
 	 * option passed as argument.
+	 * @param mainController 
 	 * @param option
 	 * 
 	 */
-	public StudyDeckLauncher(Deck deck) {
+	public StudyDeckLauncher(Deck deck, MainController mainController) {
 		DECK_MODEL = deck;	
+		
+		this.mainController = mainController;
+		
 		start();
 	}
 
@@ -62,9 +68,10 @@ public class StudyDeckLauncher {
 		STUDY_DECK_GUI.getShowAnswerButton().addActionListener(FIRST_QUESTION_LISTENER); //adds the listener for the first click to start studying
 	}
 	
-	private void stopThread() {
+	private void end() {
 		JOptionPane.showOptionDialog(null, "You've studied the entire deck!", "Congratulations!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 		if (true) {
+			mainController.getGui().setVisible(true);
 			STUDY_DECK_GUI.dispose();
 		}
 	}
@@ -103,7 +110,7 @@ public class StudyDeckLauncher {
 	private ActionListener FIRST_QUESTION_LISTENER = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			if (TOTAL_QUESTIONS == 0) {
-				stopThread();
+				end();
 			} else {
 				STUDY_DECK_GUI.setQuestion(KEY_SET.get(COUNTER));
 				STUDY_DECK_GUI.resetShowAnswerButtonText();
@@ -142,7 +149,7 @@ public class StudyDeckLauncher {
 			
 				setShowAnswerListener();	
 			} else {
-				stopThread();
+				end();
 			}
 		}		
 	};
@@ -163,7 +170,7 @@ public class StudyDeckLauncher {
 			
 				setShowAnswerListener();	
 			} else {
-				stopThread();
+				end();
 			}
 		}		
 	};
@@ -186,7 +193,7 @@ public class StudyDeckLauncher {
 			
 				setShowAnswerListener();	
 			} else {
-				stopThread();
+				end();
 			}
 		}		
 	};

@@ -69,10 +69,8 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(selectedDeckPath);
-				System.out.println("test");
-				new StudyDeckLauncher(new Deck(selectedDeckPath));	
-				
+				gui.setVisible(false);
+				new StudyDeckLauncher(new Deck(selectedDeckPath), mainController);	
 			}
 			
 		});
@@ -81,8 +79,9 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Deck(selectedDeckPath).resetFlashcardDate(); //per ora così, valutare un metodo refreshDeck che aggiorna
-				new StudyDeckLauncher(new Deck(selectedDeckPath));
+				new Deck(selectedDeckPath).resetFlashcardDate(); 
+				gui.setVisible(false);
+				new StudyDeckLauncher(new Deck(selectedDeckPath), mainController); //per ora così, valutare un metodo refreshDeck che aggiorna
 			}
 			
 		});
@@ -101,6 +100,7 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				gui.setVisible(false);
 				new CreateFlashcardsLauncher(mainController, selectedDeckPath);
 			}
 			
