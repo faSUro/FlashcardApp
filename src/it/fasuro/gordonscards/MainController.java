@@ -52,8 +52,9 @@ public class MainController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					IOTools.createDeck("testDeck");
-					gui.addDeck("testDeck");
+					String newDeckName = gui.getNewDeckName();
+					IOTools.createDeck(newDeckName);
+					gui.addDeck(newDeckName);
 					JOptionPane.showOptionDialog(null, "The deck has been created.", "Info", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 				} catch (IllegalArgumentException ex) {
 					new ErrorDisplayer("      You've inserted an invalid deck name.");
