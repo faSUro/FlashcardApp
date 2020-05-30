@@ -7,7 +7,6 @@ import java.util.TreeMap;
 
 import it.fasuro.gordonscards.utilities.IOTools;
 import it.fasuro.gordonscards.utilities.PathHandler;
-import it.fasuro.gordonscards.view.ErrorDisplayer;
 
 /**
  * Allows to generate the complete deck starting from
@@ -55,15 +54,6 @@ public class Deck {
 				buffDeck.put(flashcard.getQuestion(), flashcard);
 				flashcardList.add(flashcard.getQuestion());
 			}
-		}
-		
-		try {
-			if (buffDeck.isEmpty()) {
-				throw new IllegalArgumentException();
-			}
-		} catch (IllegalArgumentException e) {
-			new ErrorDisplayer("     The selected folder doesn't contain any flashcard!");
-			return null;
 		}
 		
 		return buffDeck;

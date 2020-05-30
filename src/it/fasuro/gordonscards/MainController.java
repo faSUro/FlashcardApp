@@ -4,8 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import it.fasuro.gordonscards.model.Deck;
+import it.fasuro.gordonscards.utilities.IOTools;
 import it.fasuro.gordonscards.utilities.PathHandler;
+import it.fasuro.gordonscards.view.ErrorDisplayer;
 import it.fasuro.gordonscards.view.mainmenu.MainMenuFrame;
 
 public class MainController {
@@ -15,11 +19,12 @@ public class MainController {
 	private MainMenuFrame gui;
 	private ArrayList<String> deckList;
 	
+	private String selectedDeckName;
 	private String selectedDeckPath;
 	
-	public MainController(ArrayList<String> s) {
-		deckList = s;
-		gui = new MainMenuFrame(deckList);
+	public MainController(ArrayList<String> deckList) {
+		this.deckList = deckList;
+		gui = new MainMenuFrame(this.deckList);
 		
 		mainController = this;
 		
@@ -32,7 +37,8 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selectedDeckPath = PathHandler.generateDeckPath(gui.getSelectedDeck()); //generates deck path starting from its name
+				selectedDeckName = gui.getSelectedDeck();
+				selectedDeckPath = PathHandler.generateDeckPath(selectedDeckName); //generates deck path starting from its name
 				Deck selectedDeck = new Deck(selectedDeckPath); 
 				gui.refreshDeckPanel(selectedDeck.getFlashcardList());
 
@@ -45,8 +51,13 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				try {
+					IOTools.createDeck("testDeck");
+					gui.addDeck("testDeck");
+					JOptionPane.showOptionDialog(null, "The deck has been created.", "Info", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+				} catch (IllegalArgumentException ex) {
+					new ErrorDisplayer("      You've inserted an invalid deck name.");
+				}
 			}
 			
 		});
@@ -90,7 +101,14 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				try {
+					IOTools.deleteDeck(selectedDeckName);
+					gui.removeDeck(selectedDeckName);
+					gui.emptyDeckPanel();
+					JOptionPane.showOptionDialog(null, "The deck has been deleted.", "Info", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+				} catch (IllegalArgumentException ex) {
+					new ErrorDisplayer("                        Something unexpected happened.");
+				}
 				
 			}
 			

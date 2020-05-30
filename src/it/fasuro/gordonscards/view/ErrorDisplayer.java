@@ -36,7 +36,7 @@ public class ErrorDisplayer extends JFrame {
 		mainPanel.setLayout(new BorderLayout());
 		
 		JLabel errorLabel = new JLabel(error);
-		errorLabel.setFont(new Font("Dialog", Font.PLAIN, 18));
+		errorLabel.setFont(new Font("Dialog", Font.PLAIN, 16));
 		
 		mainPanel.add(errorLabel, BorderLayout.CENTER);
 		

@@ -34,12 +34,25 @@ public class IOTools {
 		return deckList;
 	}
 	
-	public static void createDeck(String deckName) {
-		
+	public static void createDeck(String deckName) throws IllegalArgumentException {
+		File deckFolder = new File(PathHandler.generateDeckPath(deckName));
+
+	      if (!deckFolder.mkdir()) {
+	         throw new IllegalArgumentException();
+	      }
 	}
 	
-	public static void deleteDeck(String deckName) {
+	public static void deleteDeck(String deckName) throws IllegalArgumentException {
+		File deckFolder = new File(PathHandler.generateDeckPath(deckName));
+
+		for (String flashcard : deckFolder.list()) { //deletes all flashcards before deleting the deck folder
+			File flashcardFile = new File(deckFolder.getPath(), flashcard);
+			flashcardFile.delete();
+		}
 		
+	      if (!deckFolder.delete()) {
+	         throw new IllegalArgumentException();
+	      }
 	}
 
 	/**

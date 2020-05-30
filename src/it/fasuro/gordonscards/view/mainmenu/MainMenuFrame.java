@@ -77,12 +77,20 @@ public class MainMenuFrame extends JFrame {
 		revalidate();
 	}
 	
-	/**
-	 * Refreshes the JComboBox after a deck is added/deleted.
-	 * @param newDeckList
-	 */
-	public void refreshComboBox(ArrayList<Object> newDeckList) {
-		deckListComboBox = new JComboBox<Object>(newDeckList.toArray());
+	public void emptyDeckPanel() {
+		deckPanel.setVisible(false);
+	}
+	
+	public void addDeck(String deckName) {
+		deckListComboBox.addItem(deckName);
+
+		revalidate();
+	}
+	
+	public void removeDeck(String deckName) {
+		deckListComboBox.removeItem(deckName);
+
+		revalidate();
 	}
 	
 	public String getSelectedDeck() {

@@ -59,7 +59,7 @@ public class DeckPanel extends JPanel {
 		
 		refreshFlashcardsPanel(flashcardsList);
 	}
-	
+
 	public void refreshFlashcardsPanel(ArrayList<String> newFlashcardList) {
 		if (list != null) {
 			flashcardsPanel.remove(list);

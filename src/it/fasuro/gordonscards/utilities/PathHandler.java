@@ -52,10 +52,8 @@ public class PathHandler {
 		}		
 	}
 
-	public static String generateDeckPath(String selectedDeck) {
-		String s = getSeparator();
-		String deckPath = "assets" + s + "decks" + s + selectedDeck;
-		return deckPath;
+	public static String generateDeckPath(String deckName) {
+		return getDeckFolder() + getSeparator() + deckName;
 	}
 
 }
