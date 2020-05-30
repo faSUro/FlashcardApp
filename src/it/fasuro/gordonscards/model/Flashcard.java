@@ -9,7 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import it.fasuro.gordonscards.Difficulty;
-import it.fasuro.gordonscards.utilities.IOHandler;
+import it.fasuro.gordonscards.utilities.IOTools;
 import it.fasuro.gordonscards.utilities.PathHandler;
 
 /**
@@ -154,7 +154,7 @@ public class Flashcard {
 		buffBody += question + "\n";
 		buffBody += answer;
 		
-		IOHandler.setFlashcardDocument(filePath, buffBody);		
+		IOTools.setFlashcardDocument(filePath, buffBody);		
 	}
 
 	public String getFilePath() {

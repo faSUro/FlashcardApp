@@ -1,18 +1,46 @@
 package it.fasuro.gordonscards.utilities;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  * Allows to read and write on txt documents (flashcards).
  * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
  *
  */
-public class IOHandler {
+public class IOTools {
+	
+	public static ArrayList<String> getDeckList() {
+		ArrayList<String> deckList = new ArrayList<String>();
+		
+		File file = new File(PathHandler.getDeckFolder());
+		String[] deckFolders = file.list(new FilenameFilter() {
+		  public boolean accept(File current, String name) {
+		    return new File(current, name).isDirectory();
+		  }
+		});
+		
+		for (String deckName : deckFolders) {
+			deckList.add(deckName);
+		}
+		
+		return deckList;
+	}
+	
+	public static void createDeck(String deckName) {
+		
+	}
+	
+	public static void deleteDeck(String deckName) {
+		
+	}
 
 	/**
 	 * Returns the content of the text file placed at the path

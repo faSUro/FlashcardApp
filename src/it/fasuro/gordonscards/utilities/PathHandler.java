@@ -10,6 +10,10 @@ import java.io.File;
  */
 public class PathHandler {
 	
+	public static String getDeckFolder() {
+		return "assets" + getSeparator() + "decks";
+	}
+	
 	/**
 	 * Returns a string containing the separator (for paths),  
 	 * different for every OS.
@@ -41,7 +45,7 @@ public class PathHandler {
 			return false;
 		}
 		
-		if(path.exists()) {
+		if (path.exists()) {
 			return true;
 		} else {
 			return false;
@@ -50,7 +54,7 @@ public class PathHandler {
 
 	public static String generateDeckPath(String selectedDeck) {
 		String s = getSeparator();
-		String deckPath = "res" + s + "decks" + s + selectedDeck;
+		String deckPath = "assets" + s + "decks" + s + selectedDeck;
 		return deckPath;
 	}
 

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeMap;
 
-import it.fasuro.gordonscards.utilities.IOHandler;
+import it.fasuro.gordonscards.utilities.IOTools;
 import it.fasuro.gordonscards.utilities.PathHandler;
 import it.fasuro.gordonscards.view.ErrorDisplayer;
 
@@ -51,7 +51,7 @@ public class Deck {
 		
 		for (String fileName : new File(deckPath).list()) {	
 			if (fileName.endsWith(".txt")) {
-				Flashcard flashcard = new Flashcard(deckPath, fileName, IOHandler.getFlashcardDocument(deckPath + PathHandler.getSeparator() + fileName));
+				Flashcard flashcard = new Flashcard(deckPath, fileName, IOTools.getFlashcardDocument(deckPath + PathHandler.getSeparator() + fileName));
 				buffDeck.put(flashcard.getQuestion(), flashcard);
 				flashcardList.add(flashcard.getQuestion());
 			}
