@@ -1,10 +1,12 @@
 package it.fasuro.gordonscards.view.mainmenu;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
@@ -13,17 +15,27 @@ public class DeckPanel extends JPanel {
 	
 	private JPanel flashcardsPanel;
 	private JList<Object> list;
+	private JLabel deckInfoLabel;
 	private JButton studyDeckButton;
 	private JButton studyAllDeckButton;
 	private JButton deleteDeckButton;
 	private JButton addFlashcardsButton;
 	private JButton deleteFlashcardButton;
 	
-	public DeckPanel(ArrayList<String> flashcardsList) {
-		setLayout(new GridLayout(1, 2));
+	public DeckPanel(String deckName, ArrayList<String> flashcardsList) {
+		setLayout(new BorderLayout());
+		
+		JPanel deckInfoPanel = new JPanel();
+		
+		deckInfoLabel = new JLabel(deckName);
+		deckInfoLabel.setFont(deckInfoLabel.getFont().deriveFont(Font.BOLD, 15));
+		deckInfoPanel.add(deckInfoLabel);
+		
+		JPanel deckActionPanel = new JPanel();
+		deckActionPanel.setLayout(new GridLayout(1, 2));
 		
 		JPanel deckOptionsPanel = new JPanel();
-		add(deckOptionsPanel);
+		deckActionPanel.add(deckOptionsPanel);
 		deckOptionsPanel.setLayout(new GridLayout(3, 1));
 		
 		JPanel studyDeckPanel = new JPanel();
@@ -45,7 +57,7 @@ public class DeckPanel extends JPanel {
 		deleteDeckPanel.add(deleteDeckButton);
 		
 		flashcardsPanel = new JPanel();
-		add(flashcardsPanel);
+		deckActionPanel.add(flashcardsPanel);
 		flashcardsPanel.setLayout(new BorderLayout());
 		
 		JPanel flashcardOptionsPanel = new JPanel();
@@ -57,7 +69,23 @@ public class DeckPanel extends JPanel {
 		deleteFlashcardButton = new JButton("Delete flashcard");
 		flashcardOptionsPanel.add(deleteFlashcardButton);
 		
+		add(deckInfoPanel, BorderLayout.NORTH); add(deckActionPanel, BorderLayout.CENTER);
+		
 		refreshFlashcardsPanel(flashcardsList);
+	}
+
+	public DeckPanel() {
+		setLayout(new BorderLayout());
+		
+		JPanel deckInfoPanel = new JPanel();
+		
+		deckInfoLabel = new JLabel("Select a deck!");
+		deckInfoLabel.setFont(deckInfoLabel.getFont().deriveFont(Font.BOLD, 15));
+		deckInfoPanel.add(deckInfoLabel);
+		
+		JPanel deckActionPanel = new JPanel();
+		
+		add(deckInfoPanel, BorderLayout.NORTH); add(deckActionPanel, BorderLayout.CENTER);
 	}
 
 	public void refreshFlashcardsPanel(ArrayList<String> newFlashcardList) {

@@ -40,12 +40,14 @@ public class PathHandler {
 	 * @param path
 	 * 
 	 */
-	public static boolean isValidPath(File path) {
-		if (!path.isDirectory()) {
+	public static boolean isValidPath(String newDeck) {
+		File deckFolder = new File(newDeck);
+		
+		if (!deckFolder.isDirectory()) {
 			return false;
 		}
 		
-		if (path.exists()) {
+		if (deckFolder.exists()) {
 			return true;
 		} else {
 			return false;

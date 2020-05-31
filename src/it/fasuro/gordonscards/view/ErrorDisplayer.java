@@ -36,7 +36,7 @@ public class ErrorDisplayer extends JFrame {
 		mainPanel.setLayout(new BorderLayout());
 		
 		JLabel errorLabel = new JLabel(error);
-		errorLabel.setFont(new Font("Dialog", Font.PLAIN, 16));
+		errorLabel.setFont(errorLabel.getFont().deriveFont(Font.PLAIN, 18));
 		
 		mainPanel.add(errorLabel, BorderLayout.CENTER);
 		
@@ -44,7 +44,7 @@ public class ErrorDisplayer extends JFrame {
 		
 		setAlwaysOnTop(true);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 

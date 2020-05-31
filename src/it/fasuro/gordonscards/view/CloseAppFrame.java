@@ -1,7 +1,6 @@
 package it.fasuro.gordonscards.view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.WindowEvent;
@@ -15,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import it.fasuro.gordonscards.StartMenuOptions;
-import it.fasuro.gordonscards.StudyDeckLauncher;
 import it.fasuro.gordonscards.utilities.PathHandler;
 
 @SuppressWarnings("serial")

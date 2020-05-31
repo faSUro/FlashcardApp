@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
@@ -77,7 +76,6 @@ public class EditFlashcardFrame extends JFrame {
 		
 		//panel with a button to save changes
 		JPanel buttonsPanel = new JPanel();
-		buttonsPanel.setLayout(new GridLayout(1, 2));
 		JPanel createFlashcardPanel = new JPanel();
 		saveButton = new JButton("  Save  ");
 		saveButton.setFont(new Font("Dialog", Font.BOLD, 18));

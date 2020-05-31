@@ -9,7 +9,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import it.fasuro.gordonscards.utilities.OSDistinguisher;
-import it.fasuro.gordonscards.utilities.PathHandler;
 
 /**
  * Contains the answer to the current question, only 
@@ -34,6 +33,7 @@ public class AnswerPanel extends JPanel {
 		}
 		
 		answerArea = new JTextArea(screenSize.height/heightScale, screenSize.width/widthScale); 
+		answerArea.setEditable(false);
 		answerArea.setLineWrap(true);
 		answerArea.setWrapStyleWord(true);
 		answerArea.setFont(new Font("Dialog", Font.BOLD, 18));

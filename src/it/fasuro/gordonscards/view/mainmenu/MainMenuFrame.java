@@ -20,14 +20,14 @@ import it.fasuro.gordonscards.utilities.PathHandler;
 @SuppressWarnings("serial")
 public class MainMenuFrame extends JFrame {
 	
-	private final static int WIDTH = 800, HEIGHT = 400;
+	private final static int WIDTH = 1100, HEIGHT = 500;
 	
 	private JPanel mainPanel;
 	private JComboBox<Object> deckListComboBox;
 	private JButton selectButton;
 	private JTextField deckNameTextField;
 	private JButton createNewDeckButton;
-	private JButton importDeckButton;
+	private JButton browseButton;
 	private DeckPanel deckPanel;
 	
 	public MainMenuFrame(ArrayList<String> deckArrayList) {
@@ -60,18 +60,18 @@ public class MainMenuFrame extends JFrame {
 	
 		JPanel newDeckPanel = new JPanel();
 		
-		JLabel createDeckLabel = new JLabel("Insert new deck name: ");
+		JLabel createDeckLabel = new JLabel("Insert a name to create a new deck or a path to import an existing one: ");
 		newDeckPanel.add(createDeckLabel);
 		
 		deckNameTextField = new JTextField(15);
 		newDeckPanel.add(deckNameTextField);
 		
-		createNewDeckButton = new JButton("Create new deck"); //button to create a new deck
+		browseButton = new JButton("Browse"); //button to import an existent deck
+		newDeckPanel.add(browseButton);
+		
+		createNewDeckButton = new JButton("Create deck"); //button to create a new deck
 		newDeckPanel.add(createNewDeckButton);
-		
-		importDeckButton = new JButton("Import deck"); //button to import an existent deck
-		newDeckPanel.add(importDeckButton);
-		
+			
 		deckManagerPanel.add(deckSelectionPanel); deckManagerPanel.add(newDeckPanel);
 		
 		mainPanel.add(deckManagerPanel, BorderLayout.NORTH);
@@ -85,18 +85,24 @@ public class MainMenuFrame extends JFrame {
 	 * Refreshes the panel with the deck options and deck flashcards inside it.
 	 * @param arrayList
 	 */
-	public void refreshDeckPanel(ArrayList<String> arrayList) {
+	public void refreshDeckPanel(String deckName, ArrayList<String> arrayList) {
 		if (deckPanel != null) { //avoids NullPointerException at first call
 			mainPanel.remove(deckPanel);
 		}
-		deckPanel = new DeckPanel(arrayList);
+		deckPanel = new DeckPanel(deckName, arrayList);
 		mainPanel.add(deckPanel, BorderLayout.CENTER);
 		
 		revalidate();
 	}
 	
-	public void emptyDeckPanel() {
-		deckPanel.setVisible(false);
+	public void initializeDeckPanel() {
+		if (deckPanel != null) { //avoids NullPointerException at first call
+			mainPanel.remove(deckPanel);
+		}
+		deckPanel = new DeckPanel();
+		mainPanel.add(deckPanel, BorderLayout.CENTER);
+		
+		revalidate();
 	}
 	
 	public void addDeck(String newDeckName) {
@@ -132,8 +138,8 @@ public class MainMenuFrame extends JFrame {
 		return createNewDeckButton;
 	}
 
-	public JButton getImportDeckButton() {
-		return importDeckButton;
+	public JButton getBrowseButton() {
+		return browseButton;
 	}
 	
 	public JButton getStudyDeckButton() {

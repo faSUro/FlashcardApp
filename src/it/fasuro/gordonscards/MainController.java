@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JList;
@@ -33,6 +34,8 @@ public class MainController {
 		
 		mainController = this;
 		
+		gui.initializeDeckPanel();
+		
 		setPermanentListeners();
 	}
 
@@ -42,8 +45,12 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selectedDeckPath = PathHandler.generateDeckPath(gui.getSelectedDeck()); //generates deck path starting from its name
-				refreshMainMenu();
+				try {
+					selectedDeckPath = PathHandler.generateDeckPath(gui.getSelectedDeck()); //generates deck path starting from its name
+					refreshMainMenu();
+				} catch (NullPointerException ex) {
+					new ErrorDisplayer("                                            Select a deck first!");
+				}
 			}
 			
 		});
@@ -53,21 +60,28 @@ public class MainController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String newDeckName = gui.getNewDeckName();
-					IOTools.createDeck(newDeckName);
-					gui.addDeck(newDeckName);
+					String newDeck = gui.getNewDeckName();
+					IOTools.createDeck(newDeck);
 					JOptionPane.showOptionDialog(null, "The deck has been created.", "Info", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 					
-					selectedDeckPath = PathHandler.generateDeckPath(newDeckName); //auto selects the new deck
-					refreshMainMenu(); //meglio mettere in refresh un metodo che setti la combobox sul deck selezionato (oppure una label per indicarlo)
+					if (PathHandler.isValidPath(newDeck)) {
+						selectedDeckPath = newDeck; 
+					} else {
+						selectedDeckPath = PathHandler.generateDeckPath(newDeck);
+					}
+					
+					gui.addDeck(PathHandler.getDeckNameFromPath(selectedDeckPath));
+					refreshMainMenu(); //auto selects the new deck
 				} catch (IllegalArgumentException ex) {
-					new ErrorDisplayer("      You've inserted an invalid deck name.");
+					new ErrorDisplayer("                           You've inserted an invalid deck name.");
+				} catch (IOException ex) {
+					new ErrorDisplayer("                           You've inserted an invalid deck path.");
 				}
 			}
 			
 		});
 		
-		gui.getImportDeckButton().addActionListener(new ActionListener() {
+		gui.getBrowseButton().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -111,7 +125,7 @@ public class MainController {
 				try {
 					IOTools.deleteFile(selectedDeckPath);
 					gui.removeDeck(selectedDeck.getDeckName());
-					gui.emptyDeckPanel();
+					gui.initializeDeckPanel();
 					JOptionPane.showOptionDialog(null, "The deck has been deleted.", "Info", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 				} catch (IllegalArgumentException ex) {
 					new ErrorDisplayer("                        Something unexpected happened.");
@@ -179,7 +193,7 @@ public class MainController {
 
 	public void refreshMainMenu() {
 		refreshSelectedDeck();
-		gui.refreshDeckPanel(selectedDeck.getFlashcardList());
+		gui.refreshDeckPanel(selectedDeck.getDeckName(), selectedDeck.getFlashcardList());
 		gui.setVisible(true);
 		
 		setTemporaryListeners();

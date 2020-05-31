@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import org.apache.commons.io.FileUtils;
+
 /**
  * Allows to read and write on txt documents (flashcards).
  * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
@@ -19,6 +21,7 @@ public class IOTools {
 	
 	public static ArrayList<String> getDeckList() {
 		ArrayList<String> deckList = new ArrayList<String>();
+		deckList.add("                                                  "); //empty line to set minimum JComboBox width
 		
 		File file = new File(PathHandler.getDeckFolder());
 		String[] deckFolders = file.list(new FilenameFilter() {
@@ -34,12 +37,18 @@ public class IOTools {
 		return deckList;
 	}
 	
-	public static void createDeck(String deckName) throws IllegalArgumentException {
-		File deckFolder = new File(PathHandler.generateDeckPath(deckName));
-
-	      if (!deckFolder.mkdir()) {
-	         throw new IllegalArgumentException();
-	      }
+	public static void createDeck(String newDeck) throws IllegalArgumentException, IOException {		
+		if (PathHandler.isValidPath(newDeck)) {
+			File srcFolder = new File(newDeck); 
+			File destFolder = new File(PathHandler.generateDeckPath(PathHandler.getDeckNameFromPath(newDeck))); //creates the dest folder maintaining 
+																												//the same deck (updates the path)
+			FileUtils.copyDirectory(srcFolder, destFolder);		
+		} else {
+			File deckFolder = new File(PathHandler.generateDeckPath(newDeck));
+			if (!deckFolder.mkdir()) {
+				throw new IllegalArgumentException();
+			}
+		}
 	}
 	
 	public static void deleteFile(String filePath) throws IllegalArgumentException {
