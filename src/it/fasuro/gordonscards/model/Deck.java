@@ -86,17 +86,13 @@ public class Deck {
 		return buffDeck;
 	}
 	
-
-	public void deleteFlashcard(String flashcardQuestion) {
-		for (String s : fullDeck.keySet()) {
-			Flashcard f = fullDeck.get(s);
-
-			if (f.getQuestion().equals(flashcardQuestion)) {
-				IOTools.deleteFile(f.getFilePath());
-				fullDeck.remove(s);
-				break;
-			}
-		}		
+	public void deleteFlashcard(Flashcard flashcard) {
+		IOTools.deleteFile(flashcard.getFilePath());
+		fullDeck.remove(flashcard.getQuestion());	
+	}
+	
+	public Flashcard getFlashcard(String flashcardQuestion) {	
+		return fullDeck.get(flashcardQuestion);
 	}
 
 	public TreeMap<String, Flashcard> getFullDeck() {

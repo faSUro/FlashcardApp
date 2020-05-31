@@ -10,6 +10,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import it.fasuro.gordonscards.model.Deck;
+import it.fasuro.gordonscards.model.Flashcard;
 import it.fasuro.gordonscards.utilities.IOTools;
 import it.fasuro.gordonscards.utilities.PathHandler;
 import it.fasuro.gordonscards.view.ErrorDisplayer;
@@ -133,7 +134,8 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selectedDeck.deleteFlashcard(gui.getSelectedFlashcard());
+				Flashcard flashcard = selectedDeck.getFlashcard(gui.getSelectedFlashcard());
+				selectedDeck.deleteFlashcard(flashcard);
 				refreshMainMenu();
 			}
 			
