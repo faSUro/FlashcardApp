@@ -51,7 +51,7 @@ public class DeckPanel extends JPanel {
 		JPanel flashcardOptionsPanel = new JPanel();
 		flashcardsPanel.add(flashcardOptionsPanel, BorderLayout.SOUTH);
 		
-		addFlashcardsButton = new JButton("Add flashcard");
+		addFlashcardsButton = new JButton("Add flashcards");
 		flashcardOptionsPanel.add(addFlashcardsButton);
 		
 		deleteFlashcardButton = new JButton("Delete flashcard");

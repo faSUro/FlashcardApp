@@ -42,8 +42,8 @@ public class IOTools {
 	      }
 	}
 	
-	public static void deleteDeck(String deckName) throws IllegalArgumentException {
-		File deckFolder = new File(PathHandler.generateDeckPath(deckName));
+	public static void deleteDeck(String deckPath) throws IllegalArgumentException {
+		File deckFolder = new File(deckPath);
 
 		for (String flashcard : deckFolder.list()) { //deletes all flashcards before deleting the deck folder
 			File flashcardFile = new File(deckFolder.getPath(), flashcard);
@@ -102,3 +102,9 @@ public class IOTools {
 	}
 
 }
+
+
+
+
+
+

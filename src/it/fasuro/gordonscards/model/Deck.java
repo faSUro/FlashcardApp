@@ -17,13 +17,14 @@ import it.fasuro.gordonscards.utilities.PathHandler;
  */
 public class Deck {
 	
+	private String deckPath;
+	private String deckName;
+	
 	private TreeMap<String, Flashcard> fullDeck = new TreeMap<String, Flashcard>();
 	private TreeMap<String, String> deckToStudy = new TreeMap<String, String>();
 	private ArrayList<String> flashcardList = new ArrayList<String>();
 	
 	private Date currentDate;
-	
-	private String deckPath;
 	
 	/**
 	 * Sets the path of the folder in which are contained the
@@ -34,6 +35,7 @@ public class Deck {
 	 */
 	public Deck(String deckPath) {
 		this.deckPath = deckPath;
+		deckName = PathHandler.getDeckNameFromPath(deckPath);
 		currentDate = new Date();
 		
 		fullDeck = generateFullDeck();
@@ -104,11 +106,14 @@ public class Deck {
 		return deckPath;
 	}
 
+	public String getDeckName() {
+		return deckName;
+	}
+
 	public void resetFlashcardDate() {
 		for (Flashcard f : fullDeck.values()) {
 			f.resetDate();
 		}
-		
 	}
 
 }

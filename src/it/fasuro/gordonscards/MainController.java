@@ -19,8 +19,8 @@ public class MainController {
 	private MainMenuFrame gui;
 	private ArrayList<String> deckList;
 	
-	private String selectedDeckName;
 	private String selectedDeckPath;
+	private Deck selectedDeck;
 	
 	public MainController(ArrayList<String> deckList) {
 		this.deckList = deckList;
@@ -37,9 +37,8 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selectedDeckName = gui.getSelectedDeck();
-				selectedDeckPath = PathHandler.generateDeckPath(selectedDeckName); //generates deck path starting from its name
-				Deck selectedDeck = new Deck(selectedDeckPath); 
+				selectedDeckPath = PathHandler.generateDeckPath(gui.getSelectedDeck()); //generates deck path starting from its name
+				selectedDeck = new Deck(selectedDeckPath); 
 				gui.refreshDeckPanel(selectedDeck.getFlashcardList());
 
 				setTemporaryListeners();
@@ -82,7 +81,7 @@ public class MainController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				gui.setVisible(false);
-				new StudyDeckLauncher(new Deck(selectedDeckPath), mainController);	
+				new StudyDeckLauncher(selectedDeck, mainController);	
 			}
 			
 		});
@@ -91,9 +90,10 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Deck(selectedDeckPath).resetFlashcardDate(); 
+				selectedDeck.resetFlashcardDate(); 
+				refreshSelectedDeck();
 				gui.setVisible(false);
-				new StudyDeckLauncher(new Deck(selectedDeckPath), mainController); //per ora così, valutare un metodo refreshDeck che aggiorna
+				new StudyDeckLauncher(selectedDeck, mainController); 
 			}
 			
 		});
@@ -103,8 +103,8 @@ public class MainController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					IOTools.deleteDeck(selectedDeckName);
-					gui.removeDeck(selectedDeckName);
+					IOTools.deleteDeck(selectedDeckPath);
+					gui.removeDeck(selectedDeck.getDeckName());
 					gui.emptyDeckPanel();
 					JOptionPane.showOptionDialog(null, "The deck has been deleted.", "Info", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 				} catch (IllegalArgumentException ex) {
@@ -129,13 +129,17 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				System.out.println(gui.getSelectedFlashcard());
 				
 			}
 			
 		});
 		
 		
+	}
+	
+	private void refreshSelectedDeck() {
+		selectedDeck = new Deck(selectedDeckPath);
 	}
 
 	public MainMenuFrame getGui() {

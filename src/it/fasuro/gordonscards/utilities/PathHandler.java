@@ -55,5 +55,22 @@ public class PathHandler {
 	public static String generateDeckPath(String deckName) {
 		return getDeckFolder() + getSeparator() + deckName;
 	}
+	
+	public static String getDeckNameFromPath(String deckPath) {
+		StringBuilder deckNameBuilder = new StringBuilder(deckPath);
+		int lastSeparatorIndex = deckPath.length() - 1;
+		
+		while (lastSeparatorIndex >= 0) {
+			if (String.valueOf(deckPath.charAt(lastSeparatorIndex)).equals(getSeparator())) { //checks whether the char at given index is a separator or not
+				break;
+			}
+			
+			lastSeparatorIndex--;
+		}
+		
+		String deckName = deckNameBuilder.substring(lastSeparatorIndex + 1);
+
+		return deckName;
+	}
 
 }
