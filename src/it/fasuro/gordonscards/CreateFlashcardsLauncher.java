@@ -3,7 +3,6 @@ package it.fasuro.gordonscards;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import it.fasuro.gordonscards.model.Deck;
 import it.fasuro.gordonscards.model.Flashcard;
 import it.fasuro.gordonscards.view.createdeck.CreateFlashcardsFrame;
 

@@ -42,15 +42,17 @@ public class IOTools {
 	      }
 	}
 	
-	public static void deleteDeck(String deckPath) throws IllegalArgumentException {
-		File deckFolder = new File(deckPath);
+	public static void deleteFile(String filePath) throws IllegalArgumentException {
+		File file = new File(filePath);
 
-		for (String flashcard : deckFolder.list()) { //deletes all flashcards before deleting the deck folder
-			File flashcardFile = new File(deckFolder.getPath(), flashcard);
-			flashcardFile.delete();
-		}
+		if (file.isDirectory()) { //checks whether the file is a directory (i.e. a deck) or not (i.e. a flashcard)
+			for (String flashcard : file.list()) { //deletes all flashcards before deleting the deck folder
+				File flashcardFile = new File(file.getPath(), flashcard);
+				flashcardFile.delete();
+			}
+		} 
 		
-	      if (!deckFolder.delete()) {
+	      if (!file.delete()) {
 	         throw new IllegalArgumentException();
 	      }
 	}

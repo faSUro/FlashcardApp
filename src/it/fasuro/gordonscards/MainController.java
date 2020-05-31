@@ -52,6 +52,9 @@ public class MainController {
 					IOTools.createDeck(newDeckName);
 					gui.addDeck(newDeckName);
 					JOptionPane.showOptionDialog(null, "The deck has been created.", "Info", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+					
+					selectedDeckPath = PathHandler.generateDeckPath(newDeckName); //auto selects the new deck
+					refreshMainMenu(); //meglio mettere in refresh un metodo che setti la combobox sul deck selezionato (oppure una label per indicarlo)
 				} catch (IllegalArgumentException ex) {
 					new ErrorDisplayer("      You've inserted an invalid deck name.");
 				}
@@ -89,6 +92,7 @@ public class MainController {
 			public void actionPerformed(ActionEvent e) {
 				selectedDeck.resetFlashcardDate(); 
 				refreshSelectedDeck();
+				
 				gui.setVisible(false);
 				new StudyDeckLauncher(selectedDeck, mainController); 
 			}
@@ -100,7 +104,7 @@ public class MainController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					IOTools.deleteDeck(selectedDeckPath);
+					IOTools.deleteFile(selectedDeckPath);
 					gui.removeDeck(selectedDeck.getDeckName());
 					gui.emptyDeckPanel();
 					JOptionPane.showOptionDialog(null, "The deck has been deleted.", "Info", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
@@ -126,12 +130,11 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(gui.getSelectedFlashcard());
-				
+				selectedDeck.deleteFlashcard(gui.getSelectedFlashcard());
+				refreshMainMenu();
 			}
 			
 		});
-		
 		
 	}
 	
