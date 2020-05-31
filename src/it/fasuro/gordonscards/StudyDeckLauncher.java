@@ -71,7 +71,7 @@ public class StudyDeckLauncher {
 	private void end() {
 		JOptionPane.showOptionDialog(null, "You've studied the entire deck!", "Congratulations!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 		if (true) {
-			mainController.getGui().setVisible(true);
+			mainController.refreshMainMenu();
 			STUDY_DECK_GUI.dispose();
 		}
 	}

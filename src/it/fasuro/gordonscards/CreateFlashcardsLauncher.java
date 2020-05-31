@@ -68,9 +68,7 @@ public class CreateFlashcardsLauncher {
 	 */
 	private ActionListener END_APP_LISTENER = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			mainController.getGui().setVisible(true);
-			mainController.getGui().refreshDeckPanel(new Deck(DECK_PATH).getFlashcardList()); //da sostituire come una chiamata diretta a mainmenugui (singleton)
-			mainController.setTemporaryListeners();
+			mainController.refreshMainMenu();
 			CREATE_DECK_GUI.dispose();
 		}
 	};

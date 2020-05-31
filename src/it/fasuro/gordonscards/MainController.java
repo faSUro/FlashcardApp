@@ -38,10 +38,7 @@ public class MainController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				selectedDeckPath = PathHandler.generateDeckPath(gui.getSelectedDeck()); //generates deck path starting from its name
-				selectedDeck = new Deck(selectedDeckPath); 
-				gui.refreshDeckPanel(selectedDeck.getFlashcardList());
-
-				setTemporaryListeners();
+				refreshMainMenu();
 			}
 			
 		});
@@ -142,8 +139,12 @@ public class MainController {
 		selectedDeck = new Deck(selectedDeckPath);
 	}
 
-	public MainMenuFrame getGui() {
-		return gui;
+	public void refreshMainMenu() {
+		refreshSelectedDeck();
+		gui.refreshDeckPanel(selectedDeck.getFlashcardList());
+		gui.setVisible(true);
+		
+		setTemporaryListeners();
 	}
 
 }
