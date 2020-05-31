@@ -138,6 +138,15 @@ public class Flashcard {
 		}
 		
 		dateToRepeat = c.getTime();
+		
+		printFlashcard();
+	}
+	
+	public void editFlashcard(String newQuestion, String newAnswer) {
+		dateToRepeat = new Date();
+		question = newQuestion;
+		answer = newAnswer;
+		
 		printFlashcard();
 	}
 	

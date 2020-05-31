@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import it.fasuro.gordonscards.model.Deck;
 import it.fasuro.gordonscards.model.Flashcard;
@@ -144,11 +145,14 @@ public class MainController {
 		gui.getFlashcardList().addMouseListener(new MouseListener() { 
 
 			@Override
-			public void mouseClicked(MouseEvent e) { //da implementare
-				JList<Object> list = (JList<Object>)e.getSource();
-				if (e.getClickCount() == 2) {
+			public void mouseClicked(MouseEvent e) { 
+				@SuppressWarnings("unchecked")
+				JList<Object> list = (JList<Object>) e.getSource();
+				if (SwingUtilities.isLeftMouseButton(e) && e.getClickCount() == 2) {
 					int index = list.locationToIndex(e.getPoint());
-					System.out.println(list.getModel().getElementAt(index));
+					Flashcard flashcard = selectedDeck.getFlashcard((String) list.getModel().getElementAt(index)); 
+					gui.setVisible(false);
+					new EditFlashcardLauncher(mainController, flashcard);
 				}
 				
 			}

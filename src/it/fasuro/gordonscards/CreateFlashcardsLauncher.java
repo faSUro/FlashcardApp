@@ -31,6 +31,7 @@ public class CreateFlashcardsLauncher {
 	public CreateFlashcardsLauncher(MainController mainController, String deckPath) {
 		this.mainController = mainController;
 		DECK_PATH = deckPath;
+		
 		start();
 	}
 	
