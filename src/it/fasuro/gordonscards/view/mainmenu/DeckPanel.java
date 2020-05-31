@@ -95,4 +95,8 @@ public class DeckPanel extends JPanel {
 		return deleteFlashcardButton;
 	}
 
+	public JList<Object> getFlashcardList() {
+		return list;
+	}
+
 }

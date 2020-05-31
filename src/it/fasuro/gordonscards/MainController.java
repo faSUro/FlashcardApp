@@ -2,8 +2,11 @@ package it.fasuro.gordonscards;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import it.fasuro.gordonscards.model.Deck;
@@ -132,6 +135,32 @@ public class MainController {
 			public void actionPerformed(ActionEvent e) {
 				selectedDeck.deleteFlashcard(gui.getSelectedFlashcard());
 				refreshMainMenu();
+			}
+			
+		});
+		
+		gui.getFlashcardList().addMouseListener(new MouseListener() { 
+
+			@Override
+			public void mouseClicked(MouseEvent e) { //da implementare
+				JList<Object> list = (JList<Object>)e.getSource();
+				if (e.getClickCount() == 2) {
+					int index = list.locationToIndex(e.getPoint());
+					System.out.println(list.getModel().getElementAt(index));
+				}
+				
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {	
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {	
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
 			}
 			
 		});

@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -153,6 +154,10 @@ public class MainMenuFrame extends JFrame {
 
 	public JButton getDeleteFlashcardButton() {
 		return deckPanel.getDeleteFlashcardButton();
+	}
+	
+	public JList<Object> getFlashcardList() {
+		return deckPanel.getFlashcardList();
 	}
 
 }
