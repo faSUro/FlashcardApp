@@ -4,9 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -85,8 +87,14 @@ public class MainController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				JFileChooser jfc = new JFileChooser();
+				jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				jfc.setDialogTitle("Browse folder...");
+				int result = jfc.showSaveDialog(null);
+				if (result == JFileChooser.APPROVE_OPTION) {
+					File file = jfc.getSelectedFile();
+					gui.setDeckPath(file.getAbsolutePath());
+				}				
 			}
 			
 		});

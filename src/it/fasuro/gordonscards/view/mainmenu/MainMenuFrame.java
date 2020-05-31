@@ -166,4 +166,8 @@ public class MainMenuFrame extends JFrame {
 		return deckPanel.getFlashcardList();
 	}
 
+	public void setDeckPath(String deckPath) {
+		deckNameTextField.setText(deckPath);		
+	}
+
 }
